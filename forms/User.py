@@ -18,7 +18,7 @@ class User (UserTemplate):
     # Set the dropdown
     self.dropdown_db_type_val.items = [("mysql", "mysql"), ("postgresql", "postgresql+psycopg2")]
 
-    # Get the db_info
+    # Get the db_info write methods
     self.my_db_info = anvil.server.call('get_db_info')
 
     # Get the row
@@ -27,6 +27,13 @@ class User (UserTemplate):
 
   def button_update_click (self, **event_args):
     # This method is called when the button is clicked
-    print("db_type:", self.dropdown_db_type_val.selected_value)
-#    print("db_username:" self.textbox_)
-    self.textbox_db_username_val.
+    db_type = self.dropdown_db_type_val.selected_value
+    db_username = self.textbox_db_username_val.text
+    db_password = self.textbox_db_password_val.text
+    db_host = self.textbox_db_host_val.text
+    db_port = self.textbox_db_port_val.text
+    db_database = self.textbox_db_database_val.text
+    # Write to database
+    self.my_db_info.add_row(db_type=db_type, db_username=db_username, 
+                           db_password=db_password, db_host=db_host, 
+                           db_port=db_port, db_database=db_database)

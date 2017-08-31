@@ -20,7 +20,7 @@ def get_user_info(row):
 def get_db_info():
   # Returns none, if no one is logged in
   user_row_obj = anvil.users.get_user()
-  
+
   # If logged in:
   if user_row_obj:
     return app_tables.users_db.client_writable(owner=user_row_obj)

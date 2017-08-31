@@ -113,7 +113,7 @@ components:
   layout_properties: {grid_position: 'VYOFTO,VHVIRY'}
 - type: TextBox
   properties: {}
-  name: text_db_database_val
+  name: textbox_db_database_val
   layout_properties: {grid_position: 'VYOFTO,HDEYZI'}
 - type: Button
   properties: {width: default, align: center, border: '', enabled: true, foreground: '',

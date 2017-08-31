@@ -44,8 +44,9 @@ class Upload (UploadTemplate):
         disp_text += f_name + "\n"
         f_content_type = f.get_content_type()
         disp_text += f_content_type + "\n"
-        #f_bytes = f.get_bytes()
+        f_bytes = f.get_bytes()
         #disp_text += f_bytes + "\n"
+        f_hashlib_md5 = anvil.server.call('get_hashlib_md5', f_bytes)
 
         # Upload to server
         if True:
@@ -67,7 +68,8 @@ class Upload (UploadTemplate):
                                           machine=machine,
                                           project=project,
                                           comment=comment,
-                                          filename=f_name)
+                                          filename=f_name
+                                          md5=f_hashlib_md5)
         else:
           Notification("Could not store: %s"%f_name,title="Files:", style="danger").show()        
           disp_text += "ERROR" + "\n"

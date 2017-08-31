@@ -112,7 +112,7 @@ components:
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
     text: '     Datazymes', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '#c5da00', bold: false, underline: false,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: 'fa:area-chart'}
   name: label_title
   layout_properties: {slot: title}

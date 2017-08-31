@@ -3,6 +3,8 @@ from tables import app_tables
 import anvil.users
 import anvil.server
 
+import hashlib
+
 # Other libraries
 import bcrypt
 
@@ -37,6 +39,11 @@ def get_users_db_info():
   if user_row_obj:
     return app_tables.users_db.client_writable(owner=user_row_obj)
 
+@anvil.server.callable
+def get_hashlib_md5(file_bytes):
+  hashlib_calc = hashlib.md5(file_bytes).hexdigest()
+  return hashlib_calc
+  
 @anvil.server.callable
 def check_password(password):
   hashed = get_user_info("password_hash")

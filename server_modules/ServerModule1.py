@@ -2,6 +2,8 @@ import tables
 from tables import app_tables
 import anvil.users
 import anvil.server
+
+# Other libraries
 import bcrypt
 
 @anvil.server.callable
@@ -25,3 +27,11 @@ def get_db_info():
   # If logged in:
   if user_row_obj:
     return app_tables.users_db.client_writable(owner=user_row_obj)
+
+@anvil.server.callable
+def check_password(password):
+  hashed = get_user_info("password_hash")
+  if bcrypt.hashpw(password, hashed) == hashed:
+    return True
+  else:
+    return False

@@ -58,4 +58,23 @@ class User (UserTemplate):
     db_write['db_database'] = db_database
     
     # We are done
-    Notification("Update comple",title="Update:", style="success").show()
+    Notification("Update complete",title="Update:", style="success").show()
+
+  #def textbox_unlock_pressed_enter (self, **event_args):
+    # This method is called when the user presses Enter in this text box
+  def textbox_unlock_change (self, **event_args):
+    # This method is called when the text in this text box is edited
+    unlock = anvil.server.call('check_password', self.textbox_unlock.text)
+    # Only update if different
+    checkbox_unlock_status = self.checkbox_unlock.checked
+    if unlock != checkbox_unlock_status:
+      self.checkbox_unlock.checked = unlock
+      # Make a call to the unlock change
+      self.checkbox_unlock_change()
+
+  def checkbox_unlock_change (self, **event_args):
+    # This method is called when this checkbox is checked or unchecked
+    #print("Changed box to:", self.checkbox_unlock.checked)
+    pass
+
+

@@ -21,6 +21,29 @@ components:
   name: label_user_email_val
   layout_properties: {grid_position: 'BAWCCB,SAJVMK'}
   event_bindings: {show: label_user_show_show}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'Unlock:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_unlock
+  layout_properties: {grid_position: 'DCSMLS,OGMHEM'}
+- type: TextBox
+  properties: {width: default, align: left, hide_text: true, placeholder: '', border: '',
+    enabled: true, foreground: '', visible: true, text: '', font_size: null, font: '',
+    spacing_above: small, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false}
+  name: textbox_unlock
+  layout_properties: {grid_position: 'DCSMLS,WVDONL'}
+  event_bindings: {change: textbox_unlock_change, pressed_enter: textbox_unlock_pressed_enter}
+- type: CheckBox
+  properties: {width: default, align: left, border: '', enabled: false, foreground: '',
+    visible: true, text: 'Correct?', font_size: null, font: '', spacing_above: small,
+    spacing_below: small, italic: false, background: '', bold: false, checked: false,
+    underline: false}
+  name: checkbox_unlock
+  layout_properties: {grid_position: 'DCSMLS,BWXYCF'}
+  event_bindings: {change: checkbox_unlock_change}
 - type: Spacer
   properties: {height: 32}
   name: spacer_1

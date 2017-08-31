@@ -3,10 +3,9 @@ from tables import app_tables
 import anvil.users
 import anvil.server
 
-import hashlib
-
 # Other libraries
 import bcrypt
+import hashlib
 
 @anvil.server.callable
 def get_user_info(row):

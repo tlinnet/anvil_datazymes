@@ -68,7 +68,7 @@ class Upload (UploadTemplate):
                                           machine=machine,
                                           project=project,
                                           comment=comment,
-                                          filename=f_name
+                                          filename=f_name,
                                           md5=f_hashlib_md5)
         else:
           Notification("Could not store: %s"%f_name,title="Files:", style="danger").show()        

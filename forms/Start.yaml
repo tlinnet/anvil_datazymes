@@ -1,0 +1,168 @@
+container:
+  type: HtmlTemplate
+  properties: {html: "<link href=\"https://fonts.googleapis.com/css?family=Roboto\"\
+      \ rel=\"stylesheet\">\n\n<style>\n\tbody * {\n\t\tbox-sizing: border-box;\n\t\
+      }\n\n\tbody {\n\t\tbackground-color: #d7d7d7;\n\t\tfont-family: \"Roboto\";\n\
+      \t\tmargin: 0;\n\t\tmin-height: 100%;\n\t}\n\n\tbody.anvil-show-banner {\n\t\
+      \tmargin-top: 0;\n\t}\n\n\ta, a:visited {\n\t\tcolor: #009688;\n\t}\n\n\ta:hover,\
+      \ a:active, a:focus {\n\t\tcolor: #00796B; /* Material design: Teal 700 */\n\
+      \t}\n\n\t.placeholder {\n\t\tpadding: 5px;\n\t\tborder: 2px dashed #888;\n\t\
+      }\n\n\t.nav {\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\twidth:\
+      \ 100%;\n\t\tbackground-color: white;\n\t\tpadding: 11px 16px 11px; /* expect\
+      \ 5px margin */\n\t\theight: 62px;\n\t\tfont-size: 16px;\n\n\t\toverflow-y:\
+      \ hidden;\n\n\t\tcolor: #009688; /* Material Design: \"Teal 500\" */\n\t\ttext-transform:\
+      \ uppercase;\n\t\tfont-weight: bold;\n\n\t\tbox-shadow: 0 1px 3px #888;\n\n\n\
+      \t    -webkit-touch-callout: none;\n\t    -webkit-user-select: none;\n\t   \
+      \ -khtml-user-select: none;\n\t    -moz-user-select: none;\n\t    -ms-user-select:\
+      \ none;\n\t    user-select: none;\n\t}\n\n\tbody.anvil-show-banner .nav {\n\t\
+      \ttop: 50px;\n\t}\n\n\t.nav .title, .nav .menu-btn {\n\t\tdisplay: inline-block;\n\
+      \t\tvertical-align: top;\n\t\tmargin-left: 7px;\n\t}\n\t.nav .menu-btn, .nav\
+      \ .title.placeholder {\n\t\tmargin-top: 5px;\n\t\tmargin-left: 0;\n\t}\n\n\t\
+      .nav > .menu-btn {\n\t\tcolor: #333;\n\t\tcursor: pointer;\n\t\twidth: 32px;\n\
+      \t\theight: 32px;\n\t\tborder-radius: 16px;\n\t\tpadding: 5px;\n\t\tmargin-top:\
+      \ 7px;\n\t\ttext-align: center;\n\t}\n\n\t.nav > .menu-btn:hover {\n\t\tbackground-color:\
+      \ #ccc;\n\t}\n\n\t.nav-right {\n\t\tfloat: right;\n\t\tcolor: #333;\n\t}\n\n\
+      \t.nav-elt {\n\t\tdisplay: inline-block;\n\t\tvertical-align: top;\n\t\tmargin-left:\
+      \ 10px;\n\t\tposition: relative;\n\t}\n\n\t.nav-elt.placeholder {\n\t\tmargin-top:\
+      \ 5px;\n\t\topacity: 0.8;\n\t\tcolor: #888;\n\t\tvisibility: hidden;\n\t}\n\n\
+      \tbody.anvil-highlight .nav-elt.placeholder {\n\t\tvisibility: visible;\n\t\
+      }\n\n\t.nav-elt .drop-here {\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft:\
+      \ -7.5px;\n\t\tbottom: 0;\n\t\twidth: 5px;\n\t}\n\n\t.body {\n\t\tposition:\
+      \ relative;\n\t\tpadding-top: 62px;\n\t\twidth: 100%;\n\t\tdisplay: flex;\n\t\
+      \tflex-direction: row;\n\t\talign-items: stretch;\n\t\tmin-height: 100vh;\n\t\
+      }\n\n\tbody.anvil-show-banner .body {\n\t\tpadding-top: 112px; /* 62px navbar\
+      \ + 50px \"Anvil free\" banner */\n\t}\n\n\t.sidebar {\n\t\tbackground-color:\
+      \ #333;\n\t\tcolor: white;\n\t\tpadding: 10px 0;\n\t\tflex-shrink: 0;\n\n\t\t\
+      overflow-y: auto;\n\t\toverflow-x: hidden;\n\t}\n\n\t.sidebar .placeholder {\n\
+      \t\ttext-align: center;\n\t}\n\n\t.sidebar-elt::first {\n\t\tborder-top: 1px\
+      \ solid #888;\n\t}\n\n\t.sidebar-elt {\n\t\tposition: relative;\n\t\tborder-bottom:\
+      \ 1px solid #888;\n\t}\n\n\t.sidebar-elt .drop-here {\n\t\tposition: absolute;\n\
+      \t\ttop: -8px;\n\t\tleft: 0;\n\t\tright: 0;\n\t\theight: 5px;\n\t}\n  \n   \
+      \ .sidebar-elt>.content a {\n      font-size: 16px;\n      color:white;\n  \
+      \    text-transform: uppercase;\n    }\n  \n    .sidebar-elt>.content a:hover\
+      \ {\n      background: #444;\n    }\n\n\t.sidebar-elt .content a.anvil-component\
+      \ {\n\t\tpadding-left: 14px;\n\t\tpadding-right: 14px;\n\t}\n\n\t.sidebar-elt\
+      \ a {\n\t\tcolor: #ddd;\n\t}\n\n\t.sidebar-elt a:hover, .sidebar-elt a:active\
+      \ {\n\t\tcolor: white;\n\t}\n\n\t.cards {\n\t\tflex-grow: 1;\n\n\t\tfont-weight:\
+      \ bold;\n\t\tfont-color: #555;\n\t\tfont-size: 24px;\n\n\t\tpadding: 24px 16px;\n\
+      \t\tmax-width: 100%;\n\t}\n\n\t.cards > .anvil-container {\n\t\toutline: none\
+      \ !important;\n\t}\n\n\t.cards .anvil-container .anvil-container,\n\t.designer\
+      \ .anvil-highlight .cards .anvil-container .anvil-container {\n\t\tbackground-color:\
+      \ white;\n\t\tbox-shadow: 1px 2px 4px #888;\n\n\t\t/* Font back to defaults\
+      \ */\n\t\tfont-weight: normal;\n\t\t/*color: #333;*/\n\t\tfont-size: 14px;\n\
+      \n\t\toutline: none;\n\n\t\tpadding: 7px 0;\n\t}\n\n\t.designer .anvil-highlight\
+      \ .cards .anvil-container .anvil-container .anvil-container,\n\t.cards .anvil-container\
+      \ .anvil-container .anvil-container {\n\t\tbox-shadow: none;\n\t\tbackground-color:\
+      \ transparent;\n        padding: 0;\n\t}\n\n\t.designer .anvil-highlight .cards\
+      \ .anvil-container .anvil-container .anvil-container {\n\t\toutline: 1px dashed\
+      \ rgba(0,0,0,0.3)\n\t}\n\n\t.body .instructions {\n\t\tpadding: 24px 16px;\n\
+      \t\tfont-size: 14px;\n\t\ttext-align: center;\n\t\tcolor: #666;\n\t}\n\n\t/*\
+      \ Responsive bits: Make the menu overlay the screen\n\t   (and hidden by default)\
+      \ rather than displacing it\n\t   on small screens\n\t*/\n\n\t@media(max-width:767px)\
+      \ {\n\t\t.runner .sidebar {\n\t\t\tdisplay: none;\n\t\t\tposition: absolute;\n\
+      \t\t\ttop: 62px;\n\t\t\tbottom: 0px;\n\t\t\tleft: 0px;\n\t\t\tz-index: 2;\n\t\
+      \t}\n\n\t\t.runner .sidebar-click-guard {\n\t\t\tdisplay: none;\n\t\t\tposition:\
+      \ absolute;\n\t\t\ttop: 62px;\n\t\t\tbottom: 0px;\n\t\t\tleft: 0;\n\t\t\tright:\
+      \ 0;\n\t\t\tbackground-color: #888;\n\t\t\topacity: 0.5;\n\t\t\tz-index: 1;\n\
+      \t\t}\n\n\t\t.designer .sidebar {\n\t\t\tmax-width: 30%;\n\t\t}\n\n\t\t.sidebar.floating\
+      \ {\n\t\t\ttop: 62px;\n\t\t}\n\n\t\tbody.anvil-show-banner .sidebar.floating\
+      \ {\n\t\t\ttop: 112px;\n\t\t}\n\n\t\t.cards {\n\t\t\tpadding: 24px 0px;\n\t\t\
+      }\n\n\t}\n\n\t.sidebar.floating {\n\t\tposition: absolute;\n\t\ttop: 62px;\n\
+      \t\tbottom: 0px;\n\t\tleft: 0px;\n\t\tz-index: 2;\n\t}\n\n\tbody.anvil-show-banner\
+      \ .sidebar.floating {\n\t\ttop: 112px;\n\t}\n\n\n</style>\n\n<script>\nfunction\
+      \ toggleSidebar() {\n\tvar s = $('.sidebar');\n\tif (!s.is(':hidden')) {\n\t\
+      \t$('.sidebar-click-guard').hide();\n\t\ts.addClass('floating').animate({left:\
+      \ -s.width()}, {complete: function() { s.hide(); }});\n\t} else {\n\t\t$('.sidebar-click-guard').show();\n\
+      \t\ts.show().addClass('floating').css('left', '-100%').css('left', -s.width())\n\
+      \t\t\t.animate({left: 0}, {complete: function() { s.removeClass('floating');\
+      \ }});\n\t}\n}\n\n$(function() {\n\t$('.sidebar').click(function() {\n\t\tif\
+      \ (window.innerWidth <= 767) {\n\t\t\ttoggleSidebar();\n\t\t}\n\t});\n\t$('.sidebar-click-guard').click(toggleSidebar);\n\
+      })\n</script>\n\n<!-- Put body before nav so that it sits underneath -->\n\n\
+      <div class=\"body\" anvil-drop-default anvil-drop-container=\">.cards .anvil-container\"\
+      \ anvil-drop-redirect=\">.cards > .placeholder\">\n\t<div class=\"sidebar\"\
+      \ anvil-drop-redirect=\">.drop-here\">\n\t\t<div anvil-slot-repeat=\"sidebar\"\
+      \ class=\"sidebar-elt\">\n\t\t\t<div anvil-drop-here class=\"drop-here\"></div>\n\
+      \t\t\t<div anvil-slot class=\"content\"></div>\n\t\t</div>\n\t\t<div class=\"\
+      sidebar-elt anvil-designer-only drop-here\" anvil-drop-slot=\"sidebar\">\n\t\
+      \t\t<div class=\"content placeholder\"><i class=\"glyphicon glyphicon-plus\"\
+      ></i></div>\n\t\t</div>\n\t</div>\n\t<div class=\"sidebar-click-guard\"></div>\n\
+      \n\t<div class=\"cards anvil-measure-content\">\n\t\t<div anvil-if-slot-empty=\"\
+      default\"\n\t\t\t anvil-drop-slot=\"default\"\n\t\t\t class=\"placeholder\"\
+      >\n\t\t\t Drop a ColumnPanel here to add content\n\t\t</div>\n\n\t\t<div anvil-slot=\"\
+      default\"></div>\n\n\t\t<div class=\"anvil-designer-only instructions\">\n\t\
+      \t\t<i class=\"fa fa-info-circle\"></i> Add\n\t\t\t<img src=\"https://anvil.works/template-assets/column-panel-icon.png\"\
+      \ style=\"height: 30px; margin-right: -7px; margin-top: -5px\"> ColumnPanel\
+      \ components to create new cards.\n\t\t</div>\n\t</div>\n</div>\n\n<div class=\"\
+      nav\" anvil-drop-redirect=\".title.placeholder, .nav-elt.placeholder, .nav-elt\
+      \ .drop-here\">\n\n\t<div class=\"nav-right\" anvil-drop-redirect=\".nav-elt\"\
+      >\n\t\t<div anvil-slot-repeat=\"nav-right\" class=\"nav-elt\">\n\t\t\t<div anvil-drop-here\
+      \ class=\"drop-here\"></div>\n\t\t</div>\n\t\t<div class=\"nav-elt placeholder\
+      \ anvil-designer-only\" anvil-drop-slot=\"nav-right\">\n\t\t\t<i class=\"glyphicon\
+      \ glyphicon-plus\"></i>\n\t\t</div>\n\t</div>\n\n\t<div class=\"menu-btn\" onclick=\"\
+      toggleSidebar();\">\n\t\t<i class=\"fa fa-bars\"></i>\n\t</div>\n\n\t<div anvil-if-slot-empty=\"\
+      title\" anvil-drop-slot=\"title\" class=\"title placeholder anvil-designer-only\"\
+      >\n\t\tDrop a title here\n\t</div>\n\t<div anvil-slot=\"title\" class=\"title\"\
+      ></div>\n</div>"}
+components:
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: content_panel
+  layout_properties: {slot: default}
+  components: []
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: '     Datazymes', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '#c5da00', bold: false, underline: false,
+    icon: 'data:image/png;base64,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'}
+  name: label_title
+  layout_properties: {slot: title}
+- type: Link
+  properties:
+    width: default
+    url: ''
+    align: left
+    border: ''
+    foreground: ''
+    repeat_component: ''
+    visible: true
+    text: Home
+    font_size: null
+    row_spacing: 10
+    font: ''
+    spacing_above: small
+    icon_align: left
+    spacing_below: small
+    italic: false
+    data: {}
+    background: ''
+    bold: false
+    underline: false
+    icon: ''
+  name: link_home
+  layout_properties: {slot: sidebar}
+  event_bindings: {click: link_home_click}
+- type: Link
+  properties:
+    width: default
+    url: ''
+    align: left
+    border: ''
+    foreground: ''
+    repeat_component: ''
+    visible: true
+    text: User
+    font_size: null
+    row_spacing: 10
+    font: ''
+    spacing_above: small
+    icon_align: left
+    spacing_below: small
+    italic: false
+    data: {}
+    background: ''
+    bold: false
+    underline: false
+    icon: ''
+  name: link_user
+  layout_properties: {slot: sidebar}
+  event_bindings: {click: link_user_click}

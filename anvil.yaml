@@ -1,4 +1,12 @@
-name: Blank1
-services: []
-startup_form: Form1
+name: Home
+services:
+- source: /runtime/services/anvil/users.yml
+  client_config: {allow_signup: true, enable_automatically: true, use_email: true,
+    confirm_email: true}
+  server_config: {user_table: 2610}
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {auto_create_missing_columns: false}
+startup_form: Start
 runtime_options: {server_version: python2-sandbox}
+renamed: true

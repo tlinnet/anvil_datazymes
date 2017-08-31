@@ -1,0 +1,62 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {width: default, align: center, border: '', foreground: '', visible: true,
+    text: Welcome to user setup, font_size: 35, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: true, underline: false,
+    icon: ''}
+  name: label_top
+  layout_properties: {grid_position: 'OOHPJM,PSPEXC'}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'User:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_user_text
+  layout_properties: {grid_position: 'BAWCCB,ZARFNH'}
+- type: Label
+  properties: {}
+  name: label_user_email
+  layout_properties: {grid_position: 'BAWCCB,SAJVMK'}
+  event_bindings: {show: label_user_show_show}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'password hash:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_passwd_text
+  layout_properties: {grid_position: 'UCOHMA,QPHEBI'}
+- type: Label
+  properties: {}
+  name: label_passwd_hash
+  layout_properties: {grid_position: 'UCOHMA,JTJJZJ'}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'Database type:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_db_type
+  layout_properties: {grid_position: 'RAZTKK,UVUKMH'}
+- type: DropDown
+  properties:
+    width: default
+    align: center
+    border: ''
+    selected_value: ''
+    enabled: true
+    foreground: ''
+    items: ['']
+    visible: true
+    text: ''
+    font_size: null
+    font: ''
+    spacing_above: small
+    spacing_below: small
+    italic: false
+    background: ''
+    bold: false
+    underline: false
+  name: drop_down_1
+  layout_properties: {grid_position: 'RAZTKK,FNFATD'}

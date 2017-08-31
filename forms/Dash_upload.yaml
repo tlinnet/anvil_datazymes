@@ -1,0 +1,20 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}
+components:
+- type: Label
+  properties: {width: default, align: center, border: '', foreground: '', visible: true,
+    text: Uploads, font_size: 35, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: true, underline: false,
+    icon: ''}
+  name: label_1
+  layout_properties: {grid_position: 'FTECIP,FSYTLY'}
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: column_panel_1
+  layout_properties: {grid_position: 'RPQUFQ,AGLFZE'}
+  components:
+  - type: Plot
+    properties: {}
+    name: plot_1
+    layout_properties: {grid_position: 'RAHRAW,NAHIOX'}

@@ -166,3 +166,28 @@ components:
   name: link_user
   layout_properties: {slot: sidebar}
   event_bindings: {click: link_user_click}
+- type: Link
+  properties:
+    width: default
+    url: ''
+    align: left
+    border: ''
+    foreground: ''
+    repeat_component: ''
+    visible: true
+    text: Dash upload
+    font_size: null
+    row_spacing: 10
+    font: ''
+    spacing_above: small
+    icon_align: left
+    spacing_below: small
+    italic: false
+    data: {}
+    background: ''
+    bold: false
+    underline: false
+    icon: ''
+  name: link_dash_upload
+  layout_properties: {slot: sidebar}
+  event_bindings: {click: link_dash_upload_click}

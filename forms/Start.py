@@ -5,6 +5,7 @@ from tables import app_tables
 import anvil.users
 from User import User
 from Upload import Upload
+from Dash_upload import Dash_upload
 
 class Start (StartTemplate):
   def __init__(self, **properties):
@@ -28,4 +29,10 @@ class Start (StartTemplate):
     # This method is called when the link is clicked
     self.content_panel.clear()
     self.content_panel.add_component(User())
+
+  def link_dash_upload_click (self, **event_args):
+    # This method is called when the link is clicked
+    self.content_panel.clear()
+    self.content_panel.add_component(Dash_upload())
+
 

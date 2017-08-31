@@ -58,5 +58,40 @@ components:
     background: ''
     bold: false
     underline: false
-  name: drop_down_1
+  name: drop_down_db_type
   layout_properties: {grid_position: 'RAZTKK,FNFATD'}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'Database username:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_db_username
+  layout_properties: {grid_position: 'ODLORU,TGCPCV'}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'Database password:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_db_password
+  layout_properties: {grid_position: 'DIIWZK,WHVEQO'}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'Database host:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_db_host
+  layout_properties: {grid_position: 'RDVQGF,SVNOFY'}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'Database port:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_db_port
+  layout_properties: {grid_position: 'UGZJEY,OWHLGF'}
+- type: Label
+  properties: {width: default, align: right, border: '', foreground: '', visible: true,
+    text: 'Database scheme:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_db_database
+  layout_properties: {grid_position: 'VYOFTO,VHVIRY'}

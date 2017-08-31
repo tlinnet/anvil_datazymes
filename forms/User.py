@@ -20,7 +20,7 @@ class User (UserTemplate):
     self.dropdown_db_type_val.items = [("mysql", "mysql"), ("postgresql", "postgresql+psycopg2")]
 
     # Get the db_info write methods
-    self.my_db_info = anvil.server.call('get_db_info')
+    self.my_db_info = anvil.server.call('get_users_db_info')
     # Returns none, if no one is logged in. Then fill empty
     db_info_row = self.my_db_info.get(user=self.user)
     if not db_info_row:

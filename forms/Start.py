@@ -4,7 +4,7 @@ import tables
 from tables import app_tables
 import anvil.users
 from User import User
-from Home import Home
+from Upload import Upload
 
 class Start (StartTemplate):
   def __init__(self, **properties):
@@ -17,12 +17,12 @@ class Start (StartTemplate):
       pass
     #### Any code you write here will run when the form opens.
     # Reset home page
-    self.link_home_click()
+    self.link_upload_click()
 
-  def link_home_click (self, **event_args):
+  def link_upload_click (self, **event_args):
     # This method is called when the link is clicked
     self.content_panel.clear()
-    self.content_panel.add_component(Home())
+    self.content_panel.add_component(Upload())
     
   def link_user_click (self, **event_args):
     # This method is called when the link is clicked

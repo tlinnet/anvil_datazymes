@@ -23,9 +23,9 @@ components:
   event_bindings: {show: label_user_show_show}
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
-    text: 'Unlock:', font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
+    text: 'Unlock with password:', font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
   name: label_unlock
   layout_properties: {grid_position: 'DCSMLS,OGMHEM'}
 - type: TextBox

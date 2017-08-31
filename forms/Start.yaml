@@ -125,7 +125,7 @@ components:
     foreground: ''
     repeat_component: ''
     visible: true
-    text: Home
+    text: Upload
     font_size: null
     row_spacing: 10
     font: ''
@@ -138,9 +138,9 @@ components:
     bold: false
     underline: false
     icon: ''
-  name: link_home
+  name: link_upload
   layout_properties: {slot: sidebar}
-  event_bindings: {click: link_home_click}
+  event_bindings: {click: link_upload_click}
 - type: Link
   properties:
     width: default

@@ -20,11 +20,11 @@ class User (UserTemplate):
     self.dropdown_db_type_val.items = [("mysql", "mysql"), ("postgresql", "postgresql+psycopg2")]
 
     # Get the db_info write methods
-    self.my_db_info = anvil.server.call('get_users_db_info')
+    self.my_users_db_writable = anvil.server.call('get_users_db_writable')
     # Returns none, if no one is logged in. Then fill empty
-    db_info_row = self.my_db_info.get(user=self.user)
+    db_info_row = self.my_users_db_writable.get(user=self.user)
     if not db_info_row:
-      self.my_db_info.add_row(user=self.user,
+      self.my_users_db_writable.add_row(user=self.user,
                               db_type=self.dropdown_db_type_val.selected_value,
                               db_username="", 
                               db_password="", db_host="", 
@@ -45,7 +45,7 @@ class User (UserTemplate):
     # Define values if enabled
     if enabled:
       # Get info
-      db_info_row = self.my_db_info.get(user=self.user)
+      db_info_row = self.my_users_db_writable.get(user=self.user)
       db_type = db_info_row['db_type']
       db_username = db_info_row['db_username']
       db_password = db_info_row['db_password']
@@ -78,7 +78,7 @@ class User (UserTemplate):
     db_port = self.textbox_db_port_val.text
     db_database = self.textbox_db_database_val.text
     # Write to database. First get row, and then replace
-    db_write = self.my_db_info.get(user=self.user)
+    db_write = self.my_users_db_writable.get(user=self.user)
     db_write["db_type"] = db_type
     db_write['db_username'] = db_username
     db_write['db_password'] = db_password

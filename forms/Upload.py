@@ -21,7 +21,7 @@ class Upload (UploadTemplate):
     self.drop_down_project.items = ["5NT", "ITC", "TLC"]
 
     # Get the upload_log write methods
-    self.my_upload_log_info = anvil.server.call('get_upload_log_info')
+    self.my_upload_log_writable = anvil.server.call('get_upload_log_writable')
 
   def file_loader_1_change (self, files, **event_args):
     # This method is called when a new file is loaded into this FileLoader
@@ -63,7 +63,7 @@ class Upload (UploadTemplate):
           disp_text += "------------------" + "\n"
   
           # Call the data base
-          self.my_upload_log_info.add_row(user=user,
+          self.my_upload_log_writable.add_row(user=user,
                                           date_time=date_time,
                                           machine=machine,
                                           project=project,

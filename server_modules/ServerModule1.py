@@ -22,7 +22,7 @@ def get_user_info(row):
     return user_info
   
 @anvil.server.callable
-def get_upload_log_info():
+def get_upload_log_writable():
   # Returns none, if no one is logged in
   user_row_obj = anvil.users.get_user()
 
@@ -31,7 +31,16 @@ def get_upload_log_info():
     return app_tables.upload_log.client_writable(owner=user_row_obj)
 
 @anvil.server.callable
-def get_users_db_info():
+def get_upload_log_readable():
+  # Returns none, if no one is logged in
+  user_row_obj = anvil.users.get_user()
+
+  # If logged in:
+  if user_row_obj:
+    return app_tables.upload_log.client_readable(owner=user_row_obj)
+  
+@anvil.server.callable
+def get_users_db_writable():
   # Returns none, if no one is logged in
   user_row_obj = anvil.users.get_user()
 

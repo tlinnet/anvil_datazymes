@@ -29,19 +29,48 @@ class User (UserTemplate):
                               db_username="", 
                               db_password="", db_host="", 
                               db_port="", db_database="")
-      # Get it again, after update
-      db_info_row = self.my_db_info.get(user=self.user)
       
-    # Initial update the form
-    self.dropdown_db_type_val.selected_value = db_info_row['db_type']
-    self.textbox_db_username_val.text = db_info_row['db_username']
-    self.textbox_db_password_val.text = db_info_row['db_password']
-    self.textbox_db_host_val.text = db_info_row['db_host']
-    self.textbox_db_port_val.text = db_info_row['db_port']
-    self.textbox_db_database_val.text = db_info_row['db_database']
+    # Initial update the form not to be enabled
+    self.enable_change(enabled=False)
+
+  def enable_change(self, enabled):
+    # Enable or disable the boxes
+    self.dropdown_db_type_val.enabled = enabled
+    self.textbox_db_username_val.enabled = enabled
+    self.textbox_db_password_val.enabled = enabled
+    self.textbox_db_host_val.enabled = enabled
+    self.textbox_db_port_val.enabled = enabled
+    self.textbox_db_database_val.enabled = enabled
+    self.button_update.enabled = enabled
+    # Define values if enabled
+    if enabled:
+      # Get info
+      db_info_row = self.my_db_info.get(user=self.user)
+      db_type = db_info_row['db_type']
+      db_username = db_info_row['db_username']
+      db_password = db_info_row['db_password']
+      db_host = db_info_row['db_host']
+      db_port = db_info_row['db_port']
+      db_database = db_info_row['db_database']
+    else:
+      db_type = self.dropdown_db_type_val.selected_value
+      db_username = ""
+      db_password = ""
+      db_host = ""
+      db_port = ""
+      db_database = ""
+
+    # Fill data
+    self.dropdown_db_type_val.selected_value = db_type
+    self.textbox_db_username_val.text = db_username
+    self.textbox_db_password_val.text = db_password
+    self.textbox_db_host_val.text = db_host
+    self.textbox_db_port_val.text = db_port
+    self.textbox_db_database_val.text = db_database
     
   def button_update_click (self, **event_args):
     # This method is called when the button is clicked
+    # First get the values
     db_type = self.dropdown_db_type_val.selected_value
     db_username = self.textbox_db_username_val.text
     db_password = self.textbox_db_password_val.text
@@ -75,6 +104,6 @@ class User (UserTemplate):
   def checkbox_unlock_change (self, **event_args):
     # This method is called when this checkbox is checked or unchecked
     #print("Changed box to:", self.checkbox_unlock.checked)
-    pass
+    self.enable_change(enabled=self.checkbox_unlock.checked)
 
 

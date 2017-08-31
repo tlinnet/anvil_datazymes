@@ -2,6 +2,7 @@ import tables
 from tables import app_tables
 import anvil.users
 import anvil.server
+import bcrypt
 
 @anvil.server.callable
 def get_user_info(row):

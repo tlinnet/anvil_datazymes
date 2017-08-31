@@ -1,4 +1,4 @@
-name: User login and database
+name: Datazymes
 services:
 - source: /runtime/services/anvil/users.yml
   client_config: {allow_signup: true, enable_automatically: true, use_email: true,

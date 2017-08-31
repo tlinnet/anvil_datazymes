@@ -5,6 +5,7 @@ from tables import app_tables
 import anvil.users
 
 # Other
+from collections import Counter
 from plotly import graph_objs as go
 
 class Dash_upload (Dash_uploadTemplate):
@@ -13,16 +14,21 @@ class Dash_upload (Dash_uploadTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run when the form opens.
-    x = [3.4, 4.5, 5.6, 6.7, 8.9]
-    y = [4.4, 5.5, 6.6, 7.7, 9.9]
-
     # Get the upload_log read methods
     self.my_upload_log_readable = anvil.server.call('get_upload_log_readable')
 
     # Collect
     x_times = []
     for row in self.my_upload_log_readable.search():
-      x_times.append(row["machine"])
+      x_times.append( str(row['date_time'].date()) )
 
-    scatter = go.Scatter(x = x, y = y, fill='tozeroy')
+    # Make a counter
+    x_times_c = Counter(x_times)
+    # Sort it
+    x_times_c_s = sorted(x_times_c.items())
+    # Unzip from 2-tubles in list
+    x_plot, y_plot = zip(*x_times_c_s)
+
+    # Plot
+    scatter = go.Scatter(x = x_plot, y = y_plot, fill='tozeroy')
     self.plot_1.data = [scatter]

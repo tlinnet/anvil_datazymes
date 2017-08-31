@@ -6,6 +6,7 @@ import anvil.server
 # Other libraries
 import bcrypt
 import hashlib
+import handlefiles
 
 @anvil.server.callable
 def get_user_info(row):

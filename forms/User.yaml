@@ -67,10 +67,10 @@ components:
     icon: ''}
   name: label_db_username
   layout_properties: {grid_position: 'ODLORU,TGCPCV'}
-- type: Label
+- type: TextBox
   properties: {}
-  name: label_db_username_val
-  layout_properties: {grid_position: 'ODLORU,TIKINC'}
+  name: textbox_db_username_val
+  layout_properties: {grid_position: 'ODLORU,GZDYVY'}
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
     text: 'Database password:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -78,10 +78,10 @@ components:
     icon: ''}
   name: label_db_password
   layout_properties: {grid_position: 'DIIWZK,WHVEQO'}
-- type: Label
+- type: TextBox
   properties: {}
-  name: label_db_password_val
-  layout_properties: {grid_position: 'DIIWZK,LQUDPU'}
+  name: textbox_db_password_val
+  layout_properties: {grid_position: 'DIIWZK,JTEKJM'}
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
     text: 'Database host:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -89,10 +89,10 @@ components:
     icon: ''}
   name: label_db_host
   layout_properties: {grid_position: 'RDVQGF,SVNOFY'}
-- type: Label
+- type: TextBox
   properties: {}
-  name: label_db_host_val
-  layout_properties: {grid_position: 'RDVQGF,MNSOTP'}
+  name: textbox_db_host_val
+  layout_properties: {grid_position: 'RDVQGF,USSZAT'}
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
     text: 'Database port:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -100,10 +100,10 @@ components:
     icon: ''}
   name: label_db_port
   layout_properties: {grid_position: 'UGZJEY,OWHLGF'}
-- type: Label
+- type: TextBox
   properties: {}
-  name: label_db_port_val
-  layout_properties: {grid_position: 'UGZJEY,DZEVUV'}
+  name: textbox_db_port_val
+  layout_properties: {grid_position: 'UGZJEY,ZWXZVP'}
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
     text: 'Database schema:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -111,7 +111,15 @@ components:
     icon: ''}
   name: label_db_database
   layout_properties: {grid_position: 'VYOFTO,VHVIRY'}
-- type: Label
+- type: TextBox
   properties: {}
-  name: label_db_database_val
-  layout_properties: {grid_position: 'VYOFTO,UWENHR'}
+  name: text_db_database_val
+  layout_properties: {grid_position: 'VYOFTO,HDEYZI'}
+- type: Button
+  properties: {width: default, align: center, border: '', enabled: true, foreground: '',
+    visible: true, text: Update, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: button_update
+  layout_properties: {grid_position: 'CQVHCC,HLTYUY'}
+  event_bindings: {click: button_update_click}

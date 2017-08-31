@@ -17,7 +17,7 @@ def get_user_info(row):
     return user_info
   
 @anvil.server.callable
-def get_db_info(row):
+def get_db_info():
   # Returns none, if no one is logged in
   user_row_obj = anvil.users.get_user()
   

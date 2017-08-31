@@ -14,11 +14,11 @@ components:
     text: 'User:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
-  name: label_user_text
+  name: label_user_email
   layout_properties: {grid_position: 'BAWCCB,ZARFNH'}
 - type: Label
   properties: {}
-  name: label_user_email
+  name: label_user_email_val
   layout_properties: {grid_position: 'BAWCCB,SAJVMK'}
   event_bindings: {show: label_user_show_show}
 - type: Label
@@ -26,11 +26,11 @@ components:
     text: 'password hash:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
-  name: label_passwd_text
+  name: label_user_passwdhash
   layout_properties: {grid_position: 'UCOHMA,QPHEBI'}
 - type: Label
   properties: {}
-  name: label_passwd_hash
+  name: label_user_passwdhash_val
   layout_properties: {grid_position: 'UCOHMA,JTJJZJ'}
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
@@ -42,7 +42,7 @@ components:
 - type: DropDown
   properties:
     width: default
-    align: center
+    align: left
     border: ''
     selected_value: ''
     enabled: true
@@ -58,7 +58,7 @@ components:
     background: ''
     bold: false
     underline: false
-  name: drop_down_db_type
+  name: dropdown_db_type_val
   layout_properties: {grid_position: 'RAZTKK,FNFATD'}
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
@@ -68,12 +68,20 @@ components:
   name: label_db_username
   layout_properties: {grid_position: 'ODLORU,TGCPCV'}
 - type: Label
+  properties: {}
+  name: label_db_username_val
+  layout_properties: {grid_position: 'ODLORU,TIKINC'}
+- type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
     text: 'Database password:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_db_password
   layout_properties: {grid_position: 'DIIWZK,WHVEQO'}
+- type: Label
+  properties: {}
+  name: label_db_password_val
+  layout_properties: {grid_position: 'DIIWZK,LQUDPU'}
 - type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
     text: 'Database host:', font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -82,6 +90,10 @@ components:
   name: label_db_host
   layout_properties: {grid_position: 'RDVQGF,SVNOFY'}
 - type: Label
+  properties: {}
+  name: label_db_host_val
+  layout_properties: {grid_position: 'RDVQGF,MNSOTP'}
+- type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
     text: 'Database port:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -89,9 +101,17 @@ components:
   name: label_db_port
   layout_properties: {grid_position: 'UGZJEY,OWHLGF'}
 - type: Label
+  properties: {}
+  name: label_db_port_val
+  layout_properties: {grid_position: 'UGZJEY,DZEVUV'}
+- type: Label
   properties: {width: default, align: right, border: '', foreground: '', visible: true,
-    text: 'Database scheme:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    text: 'Database schema:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_db_database
   layout_properties: {grid_position: 'VYOFTO,VHVIRY'}
+- type: Label
+  properties: {}
+  name: label_db_database_val
+  layout_properties: {grid_position: 'VYOFTO,UWENHR'}

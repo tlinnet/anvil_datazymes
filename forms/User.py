@@ -3,7 +3,7 @@ import anvil.server
 import tables
 from tables import app_tables
 import anvil.users
-#from Unlock import Unlock
+
 
 class User (UserTemplate):
   def __init__(self, **properties):
@@ -16,12 +16,6 @@ class User (UserTemplate):
     self.user = anvil.server.call('get_user_info', "email")
     self.label_user_email_val.text = self.user
     #self.label_user_passwdhash_val.text = anvil.server.call('get_user_info', "password_hash")
-    
-    # NOT implemented yet! 
-    # Load the Unlock into the linear unlock panel. Add Unlock, by instante
-    #self.linear_unlock.clear()
-    #unlock = Unlock()
-    #self.linear_unlock.add_component(unlock)
     
     # Set the dropdown
     #self.dropdown_db_type_val.items = [("postgresql", "postgresql+psycopg2"), ("mysql", "mysql")]

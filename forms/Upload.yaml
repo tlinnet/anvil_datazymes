@@ -25,6 +25,28 @@ components:
     name: label_3
     layout_properties: {grid_position: 'MNZPGQ,ZGSJJA DLKMHE,QCMZOB'}
 - type: Label
+  properties: {width: default, align: left, border: '', foreground: '', visible: true,
+    text: 'Unlock encrypted database information with your password:', font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_unlock
+  layout_properties: {grid_position: 'QUKCPW,IPFTND'}
+- type: TextBox
+  properties: {width: default, align: left, hide_text: true, placeholder: '', border: '',
+    enabled: true, foreground: '', visible: true, text: '', font_size: null, font: '',
+    spacing_above: small, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false}
+  name: textbox_unlock
+  layout_properties: {grid_position: 'QUKCPW,NJHLIF'}
+  event_bindings: {change: textbox_unlock_change, pressed_enter: textbox_unlock_pressed_enter}
+- type: CheckBox
+  properties: {width: default, align: left, border: '', enabled: false, foreground: '',
+    visible: true, text: 'Correct?', font_size: null, font: '', spacing_above: small,
+    spacing_below: small, italic: false, background: '', bold: false, checked: false,
+    underline: false}
+  name: checkbox_unlock
+  layout_properties: {grid_position: 'QUKCPW,XUYESK'}
+- type: Label
   properties: {width: default, align: center, border: '', foreground: '', visible: true,
     text: 'Select machine:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
@@ -75,4 +97,4 @@ components:
   layout_properties: {grid_position: 'INFIQW,LXBWVA'}
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"IPFTND":6,"NJHLIF":4,"XUYESK":2}'}

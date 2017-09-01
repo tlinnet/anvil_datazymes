@@ -23,6 +23,25 @@ class Upload (UploadTemplate):
     # Get the upload_log write methods
     self.my_upload_log_writable = anvil.server.call('get_upload_log_writable')
 
+    # Initial update the form not to be enabled
+    self.enable_change(enabled=False)
+    
+  #def textbox_unlock_pressed_enter (self, **event_args):
+    # This method is called when the user presses Enter in this text box
+  def textbox_unlock_change (self, **event_args):
+    # This method is called when the text in this text box is edited
+    unlock = anvil.server.call('check_password', self.textbox_unlock.text)
+    # Only update if different
+    checkbox_unlock_status = self.checkbox_unlock.checked
+    if unlock != checkbox_unlock_status:
+      self.checkbox_unlock.checked = unlock
+      # Make a call to the unlock change
+      self.enable_change(enabled=self.checkbox_unlock.checked)
+
+  def enable_change(self, enabled):
+    # Enable or disable things
+    self.button_upload.enabled = enabled
+
   def file_loader_1_change (self, files, **event_args):
     # This method is called when a new file is loaded into this FileLoader
     self.Media_object_list = files

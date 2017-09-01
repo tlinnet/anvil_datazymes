@@ -1,0 +1,26 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{"PHZITG":5,"ULQNFK":5,"XWIWQX":2}'}
+components:
+- type: Label
+  properties: {width: default, align: left, border: '', foreground: '', visible: true,
+    text: 'Unlock encrypted database information with your password:', font_size: null,
+    font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+    background: '', bold: false, underline: false, icon: ''}
+  name: label_unlock
+  layout_properties: {grid_position: 'LHNBFY,PHZITG'}
+- type: TextBox
+  properties: {width: default, align: left, hide_text: true, placeholder: '', border: '',
+    enabled: true, foreground: '', visible: true, text: '', font_size: null, font: '',
+    spacing_above: small, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false}
+  name: textbox_unlock
+  layout_properties: {grid_position: 'LHNBFY,ULQNFK'}
+  event_bindings: {change: textbox_unlock_change, pressed_enter: textbox_unlock_pressed_enter}
+- type: CheckBox
+  properties: {width: default, align: left, border: '', enabled: false, foreground: '',
+    visible: true, text: 'Correct?', font_size: null, font: '', spacing_above: small,
+    spacing_below: small, italic: false, background: '', bold: false, checked: false,
+    underline: false}
+  name: checkbox_unlock
+  layout_properties: {grid_position: 'LHNBFY,XWIWQX'}

@@ -3,6 +3,7 @@ import anvil.server
 import tables
 from tables import app_tables
 import anvil.users
+#from Unlock import Unlock
 
 class User (UserTemplate):
   def __init__(self, **properties):
@@ -15,10 +16,17 @@ class User (UserTemplate):
     self.user = anvil.server.call('get_user_info', "email")
     self.label_user_email_val.text = self.user
     #self.label_user_passwdhash_val.text = anvil.server.call('get_user_info', "password_hash")
-   
+    
+    # NOT implemented yet! 
+    # Load the Unlock into the linear unlock panel. Add Unlock, by instante
+    #self.linear_unlock.clear()
+    #unlock = Unlock()
+    #self.linear_unlock.add_component(unlock)
+    
     # Set the dropdown
-    self.dropdown_db_type_val.items = [("mysql", "mysql"), ("postgresql", "postgresql+psycopg2")]
-
+    #self.dropdown_db_type_val.items = [("postgresql", "postgresql+psycopg2"), ("mysql", "mysql")]
+    self.dropdown_db_type_val.items = [("postgresql", "postgresql+psycopg2")]
+    
     # Get the db_info write methods
     self.my_users_db_writable = anvil.server.call('get_users_db_writable')
     # Returns none, if no one is logged in. Then fill empty
@@ -32,6 +40,18 @@ class User (UserTemplate):
       
     # Initial update the form not to be enabled
     self.enable_change(enabled=False)
+
+  #def textbox_unlock_pressed_enter (self, **event_args):
+    # This method is called when the user presses Enter in this text box
+  def textbox_unlock_change (self, **event_args):
+    # This method is called when the text in this text box is edited
+    unlock = anvil.server.call('check_password', self.textbox_unlock.text)
+    # Only update if different
+    checkbox_unlock_status = self.checkbox_unlock.checked
+    if unlock != checkbox_unlock_status:
+      self.checkbox_unlock.checked = unlock
+      # Make a call to the unlock change
+      self.enable_change(enabled=self.checkbox_unlock.checked)
 
   def enable_change(self, enabled):
     # Enable or disable the boxes
@@ -67,7 +87,7 @@ class User (UserTemplate):
     self.textbox_db_host_val.text = db_host
     self.textbox_db_port_val.text = db_port
     self.textbox_db_database_val.text = db_database
-    
+
   def button_update_click (self, **event_args):
     # This method is called when the button is clicked
     # First get the values
@@ -88,22 +108,3 @@ class User (UserTemplate):
     
     # We are done
     Notification("Update complete",title="Update:", style="success").show()
-
-  #def textbox_unlock_pressed_enter (self, **event_args):
-    # This method is called when the user presses Enter in this text box
-  def textbox_unlock_change (self, **event_args):
-    # This method is called when the text in this text box is edited
-    unlock = anvil.server.call('check_password', self.textbox_unlock.text)
-    # Only update if different
-    checkbox_unlock_status = self.checkbox_unlock.checked
-    if unlock != checkbox_unlock_status:
-      self.checkbox_unlock.checked = unlock
-      # Make a call to the unlock change
-      self.checkbox_unlock_change()
-
-  def checkbox_unlock_change (self, **event_args):
-    # This method is called when this checkbox is checked or unchecked
-    #print("Changed box to:", self.checkbox_unlock.checked)
-    self.enable_change(enabled=self.checkbox_unlock.checked)
-
-

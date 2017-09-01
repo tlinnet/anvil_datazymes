@@ -8,6 +8,13 @@ import bcrypt
 import hashlib
 #import handlefiles
 
+# Test if PRO version
+try:
+  import pandas as pd
+  anvil.server.session['PRO'] = True
+except ImportError:
+  anvil.server.session['PRO'] = False
+
 @anvil.server.callable
 def get_user_info(row):
   # Returns none, if no one is logged in

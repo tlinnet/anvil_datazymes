@@ -27,6 +27,8 @@ class Dash_upload (Dash_uploadTemplate):
     # Sort it
     x_times_c_s = sorted(x_times_c.items())
     # Unzip from 2-tubles in list
+    if len(x_times_c_s) == 0:
+      x_times_c_s = [[],[]]
     x_plot, y_plot = zip(*x_times_c_s)
 
     # Plot

@@ -5,15 +5,17 @@ import anvil.server
 
 # Other libraries
 import bcrypt
+import base64
 import hashlib
 #import handlefiles
 
 # Test if PRO version
-#try:
-#  import pandas as pd
-#  anvil.server.session['pandas'] = True
-#except ImportError:
-#  anvil.server.session['pandas'] = False
+try:
+  import Crypto
+  anvil.server.session['Crypto'] = True
+except ImportError:
+  anvil.server.session['Crypto'] = False
+  #print("'Crypto' module is not available. Semi-safe method applied.")
 
 @anvil.server.callable
 def get_user_info(row):
@@ -67,3 +69,28 @@ def check_password(password):
     return True
   else:
     return False
+
+# Encrypt data!
+# See answer from "qneill" at: 
+# https://stackoverflow.com/questions/2490334/simple-way-to-encode-a-string-according-to-a-password
+@anvil.server.callable
+def encode(key, clear):
+  enc = []
+  for i in range(len(clear)):
+    key_c = key[i % len(key)]
+    enc_c = chr((ord(clear[i]) + ord(key_c)) % 256)
+    enc.append(enc_c)
+  return base64.urlsafe_b64encode("".join(enc))
+
+@anvil.server.callable
+def decode(key, enc):
+  if enc == None:
+    return enc
+
+  dec = []
+  enc = base64.urlsafe_b64decode(enc)
+  for i in range(len(enc)):
+    key_c = key[i % len(key)]
+    dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
+    dec.append(dec_c)
+  return "".join(dec)

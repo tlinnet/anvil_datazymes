@@ -32,12 +32,8 @@ class User (UserTemplate):
     # Returns none, if no one is logged in. Then fill empty
     db_info_row = self.my_users_db_writable.get(user=self.user)
     if not db_info_row:
-      self.my_users_db_writable.add_row(user=self.user,
-                              db_type=self.dropdown_db_type_val.selected_value,
-                              db_username="", 
-                              db_password="", db_host="", 
-                              db_port="", db_database="")
-      
+      self.my_users_db_writable.add_row(user=self.user)
+
     # Initial update the form not to be enabled
     self.enable_change(enabled=False)
 
@@ -66,12 +62,12 @@ class User (UserTemplate):
     if enabled:
       # Get info
       db_info_row = self.my_users_db_writable.get(user=self.user)
-      db_type = db_info_row['db_type']
-      db_username = db_info_row['db_username']
-      db_password = db_info_row['db_password']
-      db_host = db_info_row['db_host']
-      db_port = db_info_row['db_port']
-      db_database = db_info_row['db_database']
+      db_type = anvil.server.call('decode', self.textbox_unlock.text, db_info_row['db_type'])
+      db_username = anvil.server.call('decode', self.textbox_unlock.text, db_info_row['db_username'])
+      db_password = anvil.server.call('decode', self.textbox_unlock.text, db_info_row['db_password'])
+      db_host = anvil.server.call('decode', self.textbox_unlock.text, db_info_row['db_host'])
+      db_port = anvil.server.call('decode', self.textbox_unlock.text, db_info_row['db_port'])
+      db_database = anvil.server.call('decode', self.textbox_unlock.text, db_info_row['db_database'])
     else:
       db_type = self.dropdown_db_type_val.selected_value
       db_username = ""
@@ -81,12 +77,20 @@ class User (UserTemplate):
       db_database = ""
 
     # Fill data
-    self.dropdown_db_type_val.selected_value = db_type
+    #self.dropdown_db_type_val.selected_value = db_type
+    self.set_dropdown_selected_value(self.dropdown_db_type_val, db_type)
     self.textbox_db_username_val.text = db_username
     self.textbox_db_password_val.text = db_password
     self.textbox_db_host_val.text = db_host
     self.textbox_db_port_val.text = db_port
     self.textbox_db_database_val.text = db_database
+
+  def set_dropdown_selected_value(self, dropmod, new_item):
+    # Make sure that drop down filling is safe
+    dropmod_items = getattr(dropmod, 'items')
+    dropmod_selected_value = getattr(dropmod, 'selected_value')
+    if new_item not in dropmod_items:
+      dropmod_selected_value = dropmod_items[0]
 
   def button_update_click (self, **event_args):
     # This method is called when the button is clicked
@@ -99,12 +103,12 @@ class User (UserTemplate):
     db_database = self.textbox_db_database_val.text
     # Write to database. First get row, and then replace
     db_write = self.my_users_db_writable.get(user=self.user)
-    db_write["db_type"] = db_type
-    db_write['db_username'] = db_username
-    db_write['db_password'] = db_password
-    db_write['db_host'] = db_host
-    db_write['db_port'] = db_port
-    db_write['db_database'] = db_database
+    db_write["db_type"] = anvil.server.call('encode', self.textbox_unlock.text, db_type)
+    db_write['db_username'] = anvil.server.call('encode', self.textbox_unlock.text, db_username)
+    db_write['db_password'] = anvil.server.call('encode', self.textbox_unlock.text, db_password)
+    db_write['db_host'] = anvil.server.call('encode', self.textbox_unlock.text, db_host)
+    db_write['db_port'] = anvil.server.call('encode', self.textbox_unlock.text, db_port)
+    db_write['db_database'] = anvil.server.call('encode', self.textbox_unlock.text, db_database)
     
     # We are done
     Notification("Update complete",title="Update:", style="success").show()

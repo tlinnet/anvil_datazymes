@@ -15,8 +15,9 @@ class Start (StartTemplate):
     
     # Start login. Returns None, if they press cancel.
     # We keep the login screen, as long as they have not logged in
-    while not anvil.users.login_with_form():
-      pass
+    anvil.users.login_with_email("test@test.test","test")
+    #while not anvil.users.login_with_form():
+    #  pass
     #### Any code you write here will run when the form opens.
     # Reset home page
     self.link_upload_click()

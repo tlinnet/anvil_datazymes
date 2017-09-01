@@ -9,11 +9,11 @@ import hashlib
 #import handlefiles
 
 # Test if PRO version
-try:
-  import pandas as pd
-  anvil.server.session['PRO'] = True
-except ImportError:
-  anvil.server.session['PRO'] = False
+#try:
+#  import pandas as pd
+#  anvil.server.session['pandas'] = True
+#except ImportError:
+#  anvil.server.session['pandas'] = False
 
 @anvil.server.callable
 def get_user_info(row):

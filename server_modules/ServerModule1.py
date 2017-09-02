@@ -7,7 +7,6 @@ import anvil.server
 import bcrypt
 import base64
 import hashlib
-#import handlefiles
 
 # Test if PRO version
 try:

@@ -14,3 +14,65 @@ components:
       icon: ''}
     name: label_top
     layout_properties: {grid_position: 'UBHVGG,OHSNHK'}
+- type: TextArea
+  properties: {width: default, align: left, height: 270, placeholder: '', border: '',
+    enabled: true, foreground: '', visible: true, text: "This app has been developed\
+      \ by Troels Schwarz-Linnet on anvil.works, as a prototype for solving biochemistry\
+      \ laboratory data handling when measuring on machines.\n\nProblem: \nA lab full\
+      \ of machines, running different software with different output.\n\nSolution:\
+      \ Drag and drop feature in the lab, which extracts data from files and export\
+      \ to database\nIn the app, get an overview of data submitted and table to acquire\
+      \ from.\n\nFor example machines:\n*\xc4kta purifier: Have .res files. Load the\
+      \ file and inspect columns.\n* Nanotemper: Have .xlsx files.\n* Jasco-810: .jws\
+      \ files.", font_size: null, auto_expand: true, font: '', spacing_above: small,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false}
+  name: text_area_1
+  layout_properties: {grid_position: 'RRZQBO,EYANZJ'}
+- type: TextArea
+  properties: {width: default, align: left, height: 320, placeholder: '', border: '',
+    enabled: true, foreground: '', visible: true, text: '* To unlock upload, use the
+      passwd “test”.
+
+      * To change database information: unlock use the passwd “test”.
+
+
+      Database connection is though not established yet. Only an upload log functionality
+
+      and a plot for the counts of upload.
+
+
+      Further development:
+
+      * Load different file formats, and understand input. Use of: pandas
+
+      * Extract data, export to database. Possible 20 MB trial account at: https://www.elephantsql.com
+
+      Use of: psycopg2
+
+
+      In either case, this need the “PRO” version.
+
+      An I am tempted to try.
+
+
+      To effectively progress in filetype development, unittest methods should be
+      implemented first.', font_size: null, auto_expand: true, font: '', spacing_above: small,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false}
+  name: text_area_2
+  layout_properties: {grid_position: 'ZXAEHK,YEWKHX'}
+  event_bindings: {change: text_area_2_change}
+- type: Button
+  properties: {width: default, align: center, border: '', enabled: true, foreground: '',
+    visible: true, text: Perform unittest, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: button_unittest
+  layout_properties: {grid_position: 'UHNMCA,UQJIIM'}
+  event_bindings: {click: button_unittest_click}
+- type: TextArea
+  properties: {width: default, align: left, height: 314, placeholder: '', border: '',
+    enabled: false, foreground: '', visible: true, text: '', font_size: null, auto_expand: false,
+    font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false}
+  name: textarea_unittest
+  layout_properties: {grid_position: 'OZTARI,DZWMJG'}

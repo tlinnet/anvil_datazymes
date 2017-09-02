@@ -19,13 +19,6 @@ components:
   name: button_unittest
   layout_properties: {grid_position: 'UHNMCA,UQJIIM'}
   event_bindings: {click: button_unittest_click}
-- type: TextArea
-  properties: {width: default, align: left, height: 314, placeholder: '', border: '',
-    enabled: false, foreground: '', visible: true, text: '', font_size: null, auto_expand: false,
-    font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
-    bold: false, underline: false}
-  name: textarea_unittest
-  layout_properties: {grid_position: 'OZTARI,DZWMJG'}
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}

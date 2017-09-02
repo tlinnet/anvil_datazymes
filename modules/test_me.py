@@ -1,26 +1,25 @@
 import unittest
 
-class TestStringMethods(unittest.TestCase):
-    def test_upper(self):
+class TestMethods(unittest.TestCase):
+    def test_string_upper(self):
         self.assertEqual('foo'.upper(), 'FOO')
 
-    def test_isupper(self):
+    def test_string_isupper(self):
         self.assertTrue('FOO'.isupper())
         self.assertFalse('Foo'.isupper())
 
-    def test_split(self):
+    def test_string_split(self):
         s = 'hello world'
         self.assertEqual(s.split(), ['hello', 'world'])
 
-class TestMultiplikation(unittest.TestCase):
-    def test_multiplikation(self):
-        self.assertEqual(2*2, 5)
+    def test_math_multiplikation(self):
+        self.assertEqual(2*2, 4)
 
-# What is available in unittest this sandbox? 
-#print(dir(unittest))
-# ['TestCase', '__author__', '__doc__', '__file__', '__name__', '__path__', 'main']
-
-# What is available in unittest.main this sandbox? 
+# What is available in unittest this sandbox? 'TestCase' and 'main'
 # https://docs.python.org/2/library/unittest.html
 # unittest.main([module[, defaultTest[, argv[, testRunner[, testLoader[, exit[, verbosity[, failfast[, catchbreak[, buffer]]]]]]]]]])
-test = unittest.main(verbosity=3)
+
+# 0 (quiet): you just get the total numbers of tests executed and the global result
+# 1 (default): you get the same plus a dot for every successful test or a F for every failure
+# 2 (verbose): you get the help string of every test and the result
+unittest.main(verbosity=1)

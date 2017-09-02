@@ -1,4 +1,5 @@
 from anvil import FileMedia, BlobMedia
+import anvil.server
 import unittest
 
 class TestMethods(unittest.TestCase):
@@ -54,7 +55,11 @@ class TestMethods(unittest.TestCase):
   def test_7_csv_read(self):
     # Test creation of media
     m = self.csv_bm
-    
+    # Get header and data
+    header, data = anvil.server.call('read_csv', in_bytes=m.get_bytes())
+    # Get the rest
+    self.assertEqual(header, ['Year', 'Make', 'Model', 'Length'])
+    self.assertEqual(data, [['1997', 'Ford', 'E350', '2.34'], ['2000', 'Mercury', 'Cougar', '2.38']])
     
 # What is available in unittest this sandbox? 'TestCase' and 'main'
 # https://docs.python.org/2/library/unittest.html

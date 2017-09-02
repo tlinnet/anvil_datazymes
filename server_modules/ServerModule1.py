@@ -8,6 +8,7 @@ import bcrypt
 import base64
 import hashlib
 import csv
+from StringIO import StringIO
 
 
 # Test if PRO version
@@ -70,6 +71,14 @@ def check_password(password):
     return True
   else:
     return False
+
+@anvil.server.callable
+def read_csv(in_bytes=None, delimiter=','):
+  f = StringIO(in_bytes)
+  reader = csv.reader(f, delimiter=delimiter)
+  header = reader.next()
+  data = [row for row in reader]
+  return header, data
 
 # Encrypt data!
 # See answer from "qneill" at: 

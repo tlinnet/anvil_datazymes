@@ -41,7 +41,7 @@ class TestMethods(unittest.TestCase):
     # Create x,y header
     csv_xy_in_bytes = ''
     csv_xy_in_bytes += "'x','y'" + "\n"
-    for i in range(2):
+    for i in range(6):
       x = float(str(random.uniform(0.0, 9.9))[0:4])
       y = float(str(random.uniform(0.0, 9.9))[0:4])
       csv_xy_in_bytes += '%s,%s'%(x, y) + "\n"

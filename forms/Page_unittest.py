@@ -4,11 +4,7 @@ import tables
 from tables import app_tables
 import anvil.users
 
-# unittest
-import unittest
-print(dir(unittest))
-
-class Unittest (UnittestTemplate):
+class Page_unittest (Page_unittestTemplate):
   def __init__(self, **properties):
     # You must call self.init_components() before doing anything else in this function
     self.init_components(**properties)
@@ -20,9 +16,10 @@ class Unittest (UnittestTemplate):
     self.execute_unittest()
 
   def execute_unittest(self):
-    # Execute unittests
+    # Print info
     self.add_textarea_unittest("Hello")
-    anvil.server.call('exe_unittest')
+    # Execute unittests
+    import test_me
     
   def add_textarea_unittest(self, add_text):
     # Add text to the output window

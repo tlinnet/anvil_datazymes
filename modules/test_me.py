@@ -19,7 +19,7 @@ class TestMethods(unittest.TestCase):
     def test_filemedia(self):
       # File 1.txt uploaded via git clone repository
       fm = FileMedia("1.txt")
-      #print(dir(fm))
+      print(dir(fm))
         
 # What is available in unittest this sandbox? 'TestCase' and 'main'
 # https://docs.python.org/2/library/unittest.html

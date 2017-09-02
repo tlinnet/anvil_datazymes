@@ -126,8 +126,8 @@ def file_upload(f=None, user=None, machine=None, project=None, comment=None):
   # Call the data base
   # Get the upload_log write methods
   my_upload_log_writable = get_upload_log_writable()
-  my_upload_log_writable.add_row(user=user, date_time=date_time, machine=machine, project=project,
-                                      comment=comment, filename=f_name, md5=f_hashlib_md5)
+  my_upload_log_writable.add_row(md5=f_hashlib_md5, user=user, date_time=date_time, machine=machine, project=project,
+                                      comment=comment, filename=f_name)
 
   # Test if is an 'x','y' csv file, which can be uploaded
   if f_content_type == "text/plain":
@@ -142,7 +142,12 @@ def file_upload(f=None, user=None, machine=None, project=None, comment=None):
       # Becase get() returns None if a row does not exist, we use "short circuiting" 
       # of the or operator to make sure we only run the add_row() if no such row already exists.
       hash_row = my_xy_data_writable.get(md5=f_hashlib_md5)
-      print(hash_row)
+
+      # Add hash row does not exists
+      if not hash_row:
+        # Write an empty row
+        my_xy_data_writable.add_row(md5=f_hashlib_md5)
+        
       
   # End comments
   disp_text += "------------------" + "\n"  

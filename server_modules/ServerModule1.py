@@ -10,7 +10,6 @@ import hashlib
 import csv
 from StringIO import StringIO
 
-
 # Test if PRO version
 try:
   import Crypto
@@ -80,6 +79,14 @@ def read_csv(in_bytes=None, delimiter=','):
   data = [row for row in reader]
   return header, data
 
+@anvil.server.callable
+def check_csv_xy(in_bytes=None, delimiter=','):
+  header, data = read_csv(in_bytes=in_bytes, delimiter=delimiter)
+  if header == ['x', 'y']:
+    return True
+  else:
+    return False
+  
 # Encrypt data!
 # See answer from "qneill" at: 
 # https://stackoverflow.com/questions/2490334/simple-way-to-encode-a-string-according-to-a-password

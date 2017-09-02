@@ -52,50 +52,20 @@ class Upload (UploadTemplate):
       disp_text = ""
       self.text_area_status.text = disp_text
       for f in self.Media_object_list:
-        #print(type(f))
-        #print(f.get_url())
-
-        # Get the time
-        date_time = datetime.datetime.now()
-        disp_text += str(date_time) + "\n"
-        # Get filename and content
-        f_name = f.get_name()
-        disp_text += f_name + "\n"
-        f_content_type = f.get_content_type()
-        disp_text += f_content_type + "\n"
-        f_bytes = f.get_bytes()
-        #disp_text += f_bytes + "\n"
-        f_hashlib_md5 = anvil.server.call('get_hashlib_md5', f_bytes)
-
-        # Upload to server
-        if True:
-        #if f_content_type == "text/plain":
-          # Get the formular info
-          user = self.user
-          disp_text += str(user) + "\n"
-          machine = self.drop_down_machine.selected_value
-          disp_text += str(machine) + "\n"
-          project = self.drop_down_project.selected_value
-          disp_text += str(project) + "\n"
-          comment = self.text_area_comment.text
-          disp_text += str(comment) + "\n"
-          disp_text += "------------------" + "\n"
-  
-          # Call the data base
-          self.my_upload_log_writable.add_row(user=user,
-                                          date_time=date_time,
-                                          machine=machine,
-                                          project=project,
-                                          comment=comment,
-                                          filename=f_name,
-                                          md5=f_hashlib_md5)
-        else:
+        # Get info
+        user = self.user
+        machine=self.drop_down_machine.selected_value
+        project = self.drop_down_project.selected_value
+        comment = self.text_area_comment.text
+        # Upload. Get OK and text
+        upload_call, disp_text = anvil.server.call('file_upload', f=f, user=user, machine=machine, project=project, comment=comment)
+        if not upload_call:
           Notification("Could not store: %s"%f_name,title="Files:", style="danger").show()        
           disp_text += "ERROR" + "\n"
           disp_text += "------------------" + "\n"
 
         # Update text field
-        self.text_area_status.text = disp_text
+        self.text_area_status.text += disp_text
 
       # When finished
       Notification("Completed processing files",title="Files:", style="success").show()

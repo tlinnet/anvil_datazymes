@@ -108,9 +108,21 @@ class TestMethods(unittest.TestCase):
 
   def test_10_upload_file(self):
     # Create randomg files
-    for i in range(1):
-      bm = self.setUpCreateCsvFile()
+    for i in range(2):
+      m = self.setUpCreateCsvFile()
+      # Check it is a csv file
+      xy = anvil.server.call('check_csv_xy', in_bytes=m.get_bytes())
+      self.assertEqual(xy, True)
 
+      # Test upload
+      #user = "unittest_10@unittest.com"
+      user = anvil.server.call('get_user_info', "email")
+      machine = "unittest_10"
+      project = "unittest_10"
+      comment = "unittest_10"
+      # Upload. Get OK and text
+      upload_call, disp_text = anvil.server.call('file_upload', f=m, user=user, machine=machine, project=project, comment=comment)
+      self.assertTrue(upload_call)
       
 
 # What is available in unittest this sandbox? 'TestCase' and 'main'

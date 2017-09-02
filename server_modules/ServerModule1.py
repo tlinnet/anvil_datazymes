@@ -9,6 +9,7 @@ import base64
 import hashlib
 import csv
 from StringIO import StringIO
+import datetime
 
 # Test if PRO version
 try:
@@ -89,12 +90,35 @@ def check_csv_xy(in_bytes=None, delimiter=','):
     return False
 
 @anvil.server.callable
-def file_upload(fm=None):
+def file_upload(f=None, user=None, machine=None, project=None, comment=None):
   # Get the upload_log write methods
   my_upload_log_writable = get_upload_log_writable()
+  disp_text = ""
 
+  # Get the time
+  date_time = datetime.datetime.now()
+  disp_text += str(date_time) + "\n"
+  # Get filename and content
+  f_name = f.get_name()
+  disp_text += f_name + "\n"
+  f_content_type = f.get_content_type()
+  disp_text += f_content_type + "\n"
+  f_bytes = f.get_bytes()
+  #disp_text += f_bytes + "\n"
+  f_hashlib_md5 = get_hashlib_md5(f_bytes)
+
+  # Upload to server
+  disp_text += str(user) + "\n"
+  disp_text += str(machine) + "\n"
+  disp_text += str(project) + "\n"
+  disp_text += str(comment) + "\n"
+  disp_text += "------------------" + "\n"
   
-
+  # Call the data base
+  my_upload_log_writable.add_row(user=user, date_time=date_time, machine=machine, project=project,
+                                      comment=comment, filename=f_name, md5=f_hashlib_md5)
+  return True, disp_text
+  
 # Encrypt data!
 # See answer from "qneill" at: 
 # https://stackoverflow.com/questions/2490334/simple-way-to-encode-a-string-according-to-a-password

@@ -9,8 +9,6 @@ from Dash_upload import Dash_upload
 from About import About
 from Page_unittest import Page_unittest
 
-import test_me
-
 class Start (StartTemplate):
   def __init__(self, **properties):
     # You must call self.init_components() before doing anything else in this function
@@ -24,6 +22,9 @@ class Start (StartTemplate):
     #while not anvil.users.login_with_form():
     #  pass
 
+    # Perform unittest after login
+    import test_me
+    
     #### Any code you write here will run when the form opens.
     # Reset home page
     self.link_upload_click()

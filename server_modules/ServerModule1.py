@@ -18,6 +18,7 @@ except ImportError:
   anvil.server.session['Crypto'] = False
   #print("'Crypto' module is not available. Semi-safe method applied.")
 
+
 @anvil.server.callable
 def get_user_info(row):
   # Returns none, if no one is logged in
@@ -86,7 +87,14 @@ def check_csv_xy(in_bytes=None, delimiter=','):
     return True
   else:
     return False
+
+@anvil.server.callable
+def file_upload(fm=None):
+  # Get the upload_log write methods
+  my_upload_log_writable = get_upload_log_writable()
+
   
+
 # Encrypt data!
 # See answer from "qneill" at: 
 # https://stackoverflow.com/questions/2490334/simple-way-to-encode-a-string-according-to-a-password

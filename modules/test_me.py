@@ -1,6 +1,8 @@
 from anvil import FileMedia, BlobMedia
 import anvil.server
 import unittest
+import random
+import string
 
 class TestMethods(unittest.TestCase):
   def setUp(self):
@@ -24,7 +26,24 @@ class TestMethods(unittest.TestCase):
     self.csv_xy_in_bytes += '2.34,3.4' + "\n"
     self.csv_xy_in_bytes += '2.12,5.6' + "\n"
     self.csv_xy_bm = BlobMedia(self.str_in_content_type, self.csv_xy_in_bytes, name=self.str_in_name)    
-    
+
+  def setUpCreateCsvFile(self):
+    # Make random file name
+    N = 12
+    random_string = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
+    str_in_content_type = "text/plain"
+    str_in_name = "%s.txt" % random_string
+    # Create x,y header
+    csv_xy_in_bytes = ''
+    csv_xy_in_bytes += 'x,y' + "\n"
+    for i in range(2):
+      x = float(str(random.uniform(0.0, 9.9))[0:4])
+      y = float(str(random.uniform(0.0, 9.9))[0:4])
+      csv_xy_in_bytes += '%s,%s'%(x, y) + "\n"
+
+    bm = BlobMedia(str_in_content_type, csv_xy_in_bytes, name=str_in_name)
+    return bm  
+  
   def test_1_string_upper(self):
     # Test uppercase
     self.assertEqual('foo'.upper(), 'FOO')
@@ -87,7 +106,13 @@ class TestMethods(unittest.TestCase):
     csv = anvil.server.call('check_csv_xy', in_bytes=m.get_bytes())
     self.assertEqual(csv, False)
 
-    
+  def test_10_upload_file(self):
+    # Create randomg files
+    for i in range(1):
+      bm = self.setUpCreateCsvFile()
+
+      
+
 # What is available in unittest this sandbox? 'TestCase' and 'main'
 # https://docs.python.org/2/library/unittest.html
 # unittest.main([module[, defaultTest[, argv[, testRunner[, testLoader[, exit[, verbosity[, failfast[, catchbreak[, buffer]]]]]]]]]])

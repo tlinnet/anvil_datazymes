@@ -20,9 +20,6 @@ class Upload (UploadTemplate):
     self.drop_down_machine.items = ["NanoTemper", "CD", "ITC"]
     self.drop_down_project.items = ["5NT", "ITC", "TLC"]
 
-    # Get the upload_log write methods
-    self.my_upload_log_writable = anvil.server.call('get_upload_log_writable')
-
     # Initial update the form not to be enabled
     self.enable_change(enabled=False)
     

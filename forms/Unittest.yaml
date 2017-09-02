@@ -1,0 +1,31 @@
+components:
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: column_panel_1
+  layout_properties: {grid_position: 'TWEODX,EYZCOL'}
+  components:
+  - type: Label
+    properties: {width: default, align: center, border: '', foreground: '', visible: true,
+      text: Unittest, font_size: 35, font: '', spacing_above: small, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: true, underline: false,
+      icon: ''}
+    name: label_top
+    layout_properties: {grid_position: 'UBHVGG,OHSNHK'}
+- type: Button
+  properties: {width: default, align: center, border: '', enabled: true, foreground: '',
+    visible: true, text: Perform unittest, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: button_unittest
+  layout_properties: {grid_position: 'UHNMCA,UQJIIM'}
+  event_bindings: {click: button_unittest_click}
+- type: TextArea
+  properties: {width: default, align: left, height: 314, placeholder: '', border: '',
+    enabled: false, foreground: '', visible: true, text: '', font_size: null, auto_expand: false,
+    font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false}
+  name: textarea_unittest
+  layout_properties: {grid_position: 'OZTARI,DZWMJG'}
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{}'}

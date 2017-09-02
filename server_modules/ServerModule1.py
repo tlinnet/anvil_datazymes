@@ -42,6 +42,13 @@ def get_upload_log_writable():
   if user_row_obj:
     return app_tables.upload_log.client_writable(owner=user_row_obj)
 
+def get_xy_data_writable():
+  # Returns none, if no one is logged in
+  user_row_obj = anvil.users.get_user()
+
+  # If logged in:
+  if user_row_obj:
+    return app_tables.xy_data.client_writable(owner=user_row_obj)
 
 @anvil.server.callable
 def get_upload_log_readable():
@@ -86,14 +93,16 @@ def read_csv(in_bytes=None, delimiter=','):
 def check_csv_xy(in_bytes=None, delimiter=','):
   header, data = read_csv(in_bytes=in_bytes, delimiter=delimiter)
   if header == ['x', 'y']:
-    return True
+    if data == []:
+      return False
+    else:
+      return True
   else:
     return False
 
 @anvil.server.callable
 def file_upload(f=None, user=None, machine=None, project=None, comment=None):
-  # Get the upload_log write methods
-  my_upload_log_writable = get_upload_log_writable()
+  # Prepare text for display window
   disp_text = ""
 
   # Get the time
@@ -113,11 +122,30 @@ def file_upload(f=None, user=None, machine=None, project=None, comment=None):
   disp_text += str(machine) + "\n"
   disp_text += str(project) + "\n"
   disp_text += str(comment) + "\n"
-  disp_text += "------------------" + "\n"
   
   # Call the data base
+  # Get the upload_log write methods
+  my_upload_log_writable = get_upload_log_writable()
   my_upload_log_writable.add_row(user=user, date_time=date_time, machine=machine, project=project,
                                       comment=comment, filename=f_name, md5=f_hashlib_md5)
+
+  # Test if is an 'x','y' csv file, which can be uploaded
+  if f_content_type == "text/plain":
+    is_csv_xy = check_csv_xy(in_bytes=f_bytes)
+    if is_csv_xy:
+      # Add comment
+      disp_text += "This is an x,y csv file. Processing data." + "\n" 
+      # get_xy_data_writable table
+      my_xy_data_writable = get_xy_data_writable()
+
+      # Now test if hash already exists
+      # Becase get() returns None if a row does not exist, we use "short circuiting" 
+      # of the or operator to make sure we only run the add_row() if no such row already exists.
+      hash_row = my_xy_data_writable.get(md5=f_hashlib_md5)
+      print(hash_row)
+      
+  # End comments
+  disp_text += "------------------" + "\n"  
   return True, disp_text
   
 # Encrypt data!

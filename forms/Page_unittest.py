@@ -15,4 +15,3 @@ class Page_unittest (Page_unittestTemplate):
     # This method is called when the button is clicked
     import test_me
     Notification("Unittests complete",title="Unittesting:", style="info").show()
-

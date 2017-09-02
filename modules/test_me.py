@@ -1,3 +1,4 @@
+from anvil import FileMedia
 import unittest
 
 class TestMethods(unittest.TestCase):
@@ -15,6 +16,11 @@ class TestMethods(unittest.TestCase):
     def test_math_multiplikation(self):
         self.assertEqual(2*2, 4)
 
+    def test_filemedia(self):
+      # File 1.txt uploaded via git clone repository
+      fm = FileMedia("1.txt")
+      #print(dir(fm))
+        
 # What is available in unittest this sandbox? 'TestCase' and 'main'
 # https://docs.python.org/2/library/unittest.html
 # unittest.main([module[, defaultTest[, argv[, testRunner[, testLoader[, exit[, verbosity[, failfast[, catchbreak[, buffer]]]]]]]]]])

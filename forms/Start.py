@@ -9,6 +9,8 @@ from Dash_upload import Dash_upload
 from About import About
 from Page_unittest import Page_unittest
 
+import test_me
+
 class Start (StartTemplate):
   def __init__(self, **properties):
     # You must call self.init_components() before doing anything else in this function

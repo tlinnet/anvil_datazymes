@@ -55,6 +55,9 @@ class Upload (UploadTemplate):
       disp_text = ""
       self.text_area_status.text = disp_text
       for f in self.Media_object_list:
+        #print(type(f))
+        #print(f.get_url())
+
         # Get the time
         date_time = datetime.datetime.now()
         disp_text += str(date_time) + "\n"

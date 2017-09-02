@@ -145,9 +145,19 @@ def file_upload(f=None, user=None, machine=None, project=None, comment=None):
 
       # Add hash row does not exists
       if not hash_row:
-        # Write an empty row
-        my_xy_data_writable.add_row(md5=f_hashlib_md5)
-        
+        # Write a uniq hash in the md5 row
+        my_xy_data_writable.add_row(md5=f_hashlib_md5,
+                                    user=user, date_time=date_time, machine=machine, project=project,
+                                    comment=comment, filename=f_name)
+        # After this, write each line of data
+        headers, data = read_csv(in_bytes=f_bytes)
+        # Now write
+        for line in data:
+          x, y = line
+          # Alter the hash to another column
+          my_xy_data_writable.add_row(md5_data=f_hashlib_md5, x=x, y=y,
+                                      user=user, date_time=date_time, machine=machine, project=project,
+                                      comment=comment, filename=f_name)
       
   # End comments
   disp_text += "------------------" + "\n"  

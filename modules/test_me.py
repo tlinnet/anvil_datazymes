@@ -1,4 +1,4 @@
-from anvil import FileMedia
+from anvil import FileMedia, BlobMedia
 import unittest
 
 class TestMethods(unittest.TestCase):
@@ -18,9 +18,14 @@ class TestMethods(unittest.TestCase):
 
     def test_filemedia(self):
       # File 1.txt uploaded via git clone repository
-      fm = FileMedia("1.txt")
-      print(dir(fm))
-      print(fm.get_bytes())
+      #fm = FileMedia("test_1.txt")
+      test = FileMedia
+      print [method for method in dir(test) if callable(getattr(test, method))]
+      #print(dir(FileMedia))
+      #print(dir(BlobMedia))
+      #print(help(BlobMedia))
+      #print(dir(fm))
+      #print(fm.get_bytes())
         
 # What is available in unittest this sandbox? 'TestCase' and 'main'
 # https://docs.python.org/2/library/unittest.html

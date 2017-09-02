@@ -14,7 +14,7 @@ class TestStringMethods(unittest.TestCase):
 
 class TestMultiplikation(unittest.TestCase):
     def test_multiplikation(self):
-        self.assertEqual(2*2, 4)
+        self.assertEqual(2*2, 5)
 
 # What is available in unittest this sandbox? 
 #print(dir(unittest))

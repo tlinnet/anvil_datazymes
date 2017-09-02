@@ -16,10 +16,11 @@ class Page_unittest (Page_unittestTemplate):
     self.execute_unittest()
 
   def execute_unittest(self):
-    # Print info
-    self.add_textarea_unittest("Hello")
     # Execute unittests
     import test_me
+
+    # Print info
+    self.add_textarea_unittest("Unittesting complete.")
     
   def add_textarea_unittest(self, add_text):
     # Add text to the output window

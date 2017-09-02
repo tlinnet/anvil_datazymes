@@ -42,6 +42,7 @@ def get_upload_log_writable():
   if user_row_obj:
     return app_tables.upload_log.client_writable(owner=user_row_obj)
 
+
 @anvil.server.callable
 def get_upload_log_readable():
   # Returns none, if no one is logged in
@@ -50,7 +51,7 @@ def get_upload_log_readable():
   # If logged in:
   if user_row_obj:
     return app_tables.upload_log.client_readable(owner=user_row_obj)
-  
+
 @anvil.server.callable
 def get_users_db_writable():
   # Returns none, if no one is logged in
@@ -76,7 +77,7 @@ def check_password(password):
 @anvil.server.callable
 def read_csv(in_bytes=None, delimiter=','):
   f = StringIO(in_bytes)
-  reader = csv.reader(f, delimiter=delimiter)
+  reader = csv.reader(f, delimiter=delimiter, quotechar="'", quoting=csv.QUOTE_NONNUMERIC)
   header = reader.next()
   data = [row for row in reader]
   return header, data

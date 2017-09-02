@@ -15,14 +15,14 @@ class TestMethods(unittest.TestCase):
 
     # Create csv file
     self.csv_in_bytes = ''
-    self.csv_in_bytes += 'Year,Make,Model,Length' + "\n"
-    self.csv_in_bytes += '1997,Ford,E350,2.34' + "\n"
-    self.csv_in_bytes += '2000,Mercury,Cougar,2.38' + "\n"
+    self.csv_in_bytes += "'Year','Make','Model','Length'" + "\n"
+    self.csv_in_bytes += "1997,'Ford','E350',2.34" + "\n"
+    self.csv_in_bytes += "2000,'Mercury','Cougar',2.38" + "\n"
     self.csv_bm = BlobMedia(self.str_in_content_type, self.csv_in_bytes, name=self.str_in_name)
 
     # Create csv file
     self.csv_xy_in_bytes = ''
-    self.csv_xy_in_bytes += 'x,y' + "\n"
+    self.csv_xy_in_bytes += "'x','y'" + "\n"
     self.csv_xy_in_bytes += '2.34,3.4' + "\n"
     self.csv_xy_in_bytes += '2.12,5.6' + "\n"
     self.csv_xy_bm = BlobMedia(self.str_in_content_type, self.csv_xy_in_bytes, name=self.str_in_name)    
@@ -35,7 +35,7 @@ class TestMethods(unittest.TestCase):
     str_in_name = "%s.txt" % random_string
     # Create x,y header
     csv_xy_in_bytes = ''
-    csv_xy_in_bytes += 'x,y' + "\n"
+    csv_xy_in_bytes += "'x','y'" + "\n"
     for i in range(2):
       x = float(str(random.uniform(0.0, 9.9))[0:4])
       y = float(str(random.uniform(0.0, 9.9))[0:4])
@@ -85,7 +85,7 @@ class TestMethods(unittest.TestCase):
     header, data = anvil.server.call('read_csv', in_bytes=m.get_bytes())
     # Get the rest
     self.assertEqual(header, ['Year', 'Make', 'Model', 'Length'])
-    self.assertEqual(data, [['1997', 'Ford', 'E350', '2.34'], ['2000', 'Mercury', 'Cougar', '2.38']])
+    self.assertEqual(data, [[1997, 'Ford', 'E350', 2.34], [2000, 'Mercury', 'Cougar', 2.38]])
 
   def test_8_csv_xy_read(self):
     # Get media
@@ -94,7 +94,7 @@ class TestMethods(unittest.TestCase):
     header, data = anvil.server.call('read_csv', in_bytes=m.get_bytes())
     # Get the rest
     self.assertEqual(header, ['x', 'y'])
-    self.assertEqual(data, [['2.34', '3.4'], ['2.12', '5.6']])
+    self.assertEqual(data, [[2.34, 3.4], [2.12, 5.6]])
 
   def test_9_csv_xy_check(self):
     # Check xy data
@@ -108,7 +108,7 @@ class TestMethods(unittest.TestCase):
 
   def test_10_upload_file(self):
     # Create randomg files
-    for i in range(2):
+    for i in range(1):
       m = self.setUpCreateCsvFile()
       # Check it is a csv file
       xy = anvil.server.call('check_csv_xy', in_bytes=m.get_bytes())
@@ -123,7 +123,37 @@ class TestMethods(unittest.TestCase):
       # Upload. Get OK and text
       upload_call, disp_text = anvil.server.call('file_upload', f=m, user=user, machine=machine, project=project, comment=comment)
       self.assertTrue(upload_call)
+
+      # Get the log
+      my_upload_log_readable = anvil.server.call('get_upload_log_readable')
+
+      # Work with tables: https://anvil.works/doc/index.html#-div-id-data_tables_api-using-data-tables-in-python-div-
       
+      # Collect from database, and test
+      filenames = []
+      for row in my_upload_log_readable.search():
+        if row['filename'] == m.get_name():
+          filenames.append(row['filename'])
+      self.assertEqual(len(filenames), 1)
+      self.assertEqual(filenames[0], m.get_name())
+      
+      # Make the search different
+      filenames = []
+      for row in my_upload_log_readable.search(filename=m.get_name()):
+        filenames.append(row['filename'])
+      self.assertEqual(len(filenames), 1)
+      self.assertEqual(filenames[0], m.get_name())
+      
+      # Anotherway
+      filenames = [row["filename"] for row in my_upload_log_readable.search() if row["filename"] == m.get_name()]
+      self.assertEqual(len(filenames), 1)
+      self.assertEqual(filenames[0], m.get_name())
+      
+      # Third way by get
+      # get() method returns a single row that matches the keyword arguments,
+      # None if no such row exists. If more than one row matches, it raises an exception.
+      row_val = my_upload_log_readable.get(filename=m.get_name())['filename']
+      self.assertEqual(row_val, m.get_name())
 
 # What is available in unittest this sandbox? 'TestCase' and 'main'
 # https://docs.python.org/2/library/unittest.html

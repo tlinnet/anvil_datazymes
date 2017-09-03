@@ -23,7 +23,7 @@ class Start (StartTemplate):
     #  pass
 
     # Perform unittest after login
-    import test_me
+    #import test_me
     
     #### Any code you write here will run when the form opens.
     # Reset home page

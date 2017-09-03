@@ -59,15 +59,15 @@ components:
   layout_properties: {grid_position: 'LZZPXO,WEGYEU ZBZBJD,CVFCCI'}
 - type: Label
   properties: {width: default, align: center, border: '', foreground: '', visible: true,
-    text: 'Select project:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    text: 'Project ID:', font_size: null, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: label_2
   layout_properties: {grid_position: 'LZZPXO,FMNQMN IMFWRV,MVPAAJ'}
-- type: DropDown
+- type: TextBox
   properties: {}
-  name: drop_down_project
-  layout_properties: {grid_position: 'LZZPXO,FMNQMN ZBTCTU,MNKGUB'}
+  name: textbox_project
+  layout_properties: {grid_position: 'LZZPXO,FMNQMN ZBTCTU,DOSNXE'}
 - type: TextArea
   properties: {width: default, align: left, height: '', placeholder: Comment to experiment,
     border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,

@@ -126,8 +126,9 @@ class TestMethods(unittest.TestCase):
       # Test upload
       #user = "unittest_10@unittest.com"
       user = anvil.server.call('get_user_info', "email")
-      machine = "unittest_10"
-      project = "unittest_10"
+      machines_d, machines_l = anvil.server.call('get_machines')
+      machine = machines_d['xy_csv']
+      project = "unittest_10_v2"
       comment = "unittest_10"
       # Upload. Get OK and text
       upload_call, disp_text = anvil.server.call('file_upload', f=m, user=user, machine=machine, project=project, comment=comment)
@@ -137,7 +138,6 @@ class TestMethods(unittest.TestCase):
       my_upload_log_readable = anvil.server.call('get_upload_log_readable')
 
       # Work with tables: https://anvil.works/doc/index.html#-div-id-data_tables_api-using-data-tables-in-python-div-
-      
       # Collect from database, and test
       filenames = []
       for row in my_upload_log_readable.search():
@@ -163,6 +163,11 @@ class TestMethods(unittest.TestCase):
       # None if no such row exists. If more than one row matches, it raises an exception.
       row_val = my_upload_log_readable.get(filename=m.get_name())['filename']
       self.assertEqual(row_val, m.get_name())
+
+  def not_test_11_get_projects(self):
+    # Test getting projects
+    projects = anvil.server.call('list_xy_csv_get_projects')
+    project_sets = anvil.server.call('list_xy_csv_get_p_datasets', project='test')
 
 # What is available in unittest this sandbox? 'TestCase' and 'main'
 # https://docs.python.org/2/library/unittest.html

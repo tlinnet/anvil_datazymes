@@ -19,7 +19,40 @@ except ImportError:
   anvil.server.session['Crypto'] = False
   #print("'Crypto' module is not available. Semi-safe method applied.")
 
+@anvil.server.callable
+def list_xy_csv_get_projects():
+  user_row_obj = anvil.users.get_user()
+  # Get the read for all the projects
+  projects_readable = app_tables.xy_data.client_readable(owner=user_row_obj, md5_data=None)
+  projects = [row["project"] for row in projects_readable.search()]
+  # Uniq and sort
+  projects = sorted(set(projects))
+  return projects
 
+@anvil.server.callable
+def list_xy_csv_get_p_datasets(project=None):
+  user_row_obj = anvil.users.get_user()
+  # Get the read for all the projects
+  projects_readable = app_tables.xy_data.client_readable(owner=user_row_obj, md5_data=None)
+  project_sets = []
+  for r in projects_readable.search():
+    data = [r['project'], r['md5'], r['date_time']]
+    if project == None:
+      project_sets.append(data)
+    elif r["project"] == project:
+       project_sets.append(data)
+  return project_sets
+
+@anvil.server.callable
+def get_machines():
+  anyfile = "Any file"
+  xy_csv = "x,y csv"
+  nanotemp48 = "NanoTemper nt.48"
+  jasco810 = "Jasco J-810  Spectropolarimeter"
+  d = {'anyfile':anyfile, 'xy_csv':xy_csv, 'nanotemp48':nanotemp48, 'jasco810':jasco810}
+  l = [d['anyfile'], d['xy_csv'], d['nanotemp48'], d['jasco810']]
+  return d, l
+  
 @anvil.server.callable
 def get_user_info(row):
   # Returns none, if no one is logged in
@@ -122,7 +155,7 @@ def file_upload(f=None, user=None, machine=None, project=None, comment=None):
   disp_text += str(machine) + "\n"
   disp_text += str(project) + "\n"
   disp_text += str(comment) + "\n"
-  
+
   # Call the data base
   # Get the upload_log write methods
   my_upload_log_writable = get_upload_log_writable()
@@ -130,35 +163,37 @@ def file_upload(f=None, user=None, machine=None, project=None, comment=None):
                                       comment=comment, filename=f_name)
 
   # Test if is an 'x','y' csv file, which can be uploaded
-  if f_content_type == "text/plain":
-    is_csv_xy = check_csv_xy(in_bytes=f_bytes)
-    if is_csv_xy:
-      # Add comment
-      disp_text += "This is an x,y csv file. Processing data." + "\n" 
-      # get_xy_data_writable table
-      my_xy_data_writable = get_xy_data_writable()
-
-      # Now test if hash already exists
-      # Becase get() returns None if a row does not exist, we use "short circuiting" 
-      # of the or operator to make sure we only run the add_row() if no such row already exists.
-      hash_row = my_xy_data_writable.get(md5=f_hashlib_md5)
-
-      # Add hash row does not exists
-      if not hash_row:
-        # Write a uniq hash in the md5 row
-        my_xy_data_writable.add_row(md5=f_hashlib_md5,
-                                    user=user, date_time=date_time, machine=machine, project=project,
-                                    comment=comment, filename=f_name)
-        # After this, write each line of data
-        headers, data = read_csv(in_bytes=f_bytes)
-        # Now write
-        for line in data:
-          x, y = line
-          # Alter the hash to another column
-          my_xy_data_writable.add_row(md5_data=f_hashlib_md5, x=x, y=y,
+  machines_d, machines_l = get_machines()
+  if machine == machines_d['xy_csv']:
+    if f_content_type == "text/plain":
+      is_csv_xy = check_csv_xy(in_bytes=f_bytes)
+      if is_csv_xy:
+        # Add comment
+        disp_text += "This is an x,y csv file. Processing data." + "\n" 
+        # get_xy_data_writable table
+        my_xy_data_writable = get_xy_data_writable()
+  
+        # Now test if hash already exists
+        # Becase get() returns None if a row does not exist, we use "short circuiting" 
+        # of the or operator to make sure we only run the add_row() if no such row already exists.
+        hash_row = my_xy_data_writable.get(md5=f_hashlib_md5)
+  
+        # Add hash row does not exists
+        if not hash_row:
+          # Write a uniq hash in the md5 row
+          my_xy_data_writable.add_row(md5=f_hashlib_md5,
                                       user=user, date_time=date_time, machine=machine, project=project,
                                       comment=comment, filename=f_name)
-      
+          # After this, write each line of data
+          headers, data = read_csv(in_bytes=f_bytes)
+          # Now write
+          for line in data:
+            x, y = line
+            # Alter the hash to another column
+            my_xy_data_writable.add_row(md5_data=f_hashlib_md5, x=x, y=y,
+                                        user=user, date_time=date_time, machine=machine, project=project,
+                                        comment=comment, filename=f_name)
+        
   # End comments
   disp_text += "------------------" + "\n"  
   return True, disp_text

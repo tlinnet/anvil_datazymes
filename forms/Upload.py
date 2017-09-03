@@ -18,9 +18,9 @@ class Upload (UploadTemplate):
     self.Media_object_list = []
 
     # float('NaN'), to make a python nan
-    self.drop_text_xy_csv = "x,y csv"
-    self.drop_down_machine.items = ["Any file", self.drop_text_xy_csv, "NanoTemper nt.48", "Jasco J-810  Spectropolarimeter"]
-
+    self.machines_d, self.machines_l = anvil.server.call('get_machines')
+    self.drop_down_machine.items = self.machines_l
+    
     # Initial update the form not to be enabled
     self.enable_change(enabled=False)
     
@@ -55,7 +55,7 @@ class Upload (UploadTemplate):
       for f in self.Media_object_list:
         # Get info
         user = self.user
-        machine=self.drop_down_machine.selected_value
+        machine = self.drop_down_machine.selected_value
         project = self.textbox_project.text
 
         comment = self.text_area_comment.text

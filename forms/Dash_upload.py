@@ -34,3 +34,22 @@ class Dash_upload (Dash_uploadTemplate):
     # Plot
     scatter = go.Scatter(x = x_plot, y = y_plot, fill='tozeroy')
     self.plot_1.data = [scatter]
+    
+    # Get projects
+    projects = anvil.server.call('list_xy_csv_get_projects')
+    self.dropdown_projects.items = [('All', None)] + projects
+
+  def dropdown_projects_change (self, **event_args):
+    # This method is called when an item is selected
+    datasets = anvil.server.call('list_xy_csv_get_p_datasets', project=self.dropdown_projects.selected_value)
+    # Make out
+    items = []
+    for dataset in datasets:
+      items.append(dataset[0]+dataset[1])
+    self.dropdown_project_sets.items = items
+    
+  def dropdown_project_sets_change (self, **event_args):
+    # This method is called when an item is selected
+    print(dropdown_project_sets.selected_value)
+
+

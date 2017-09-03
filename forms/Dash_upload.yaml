@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"JWLQDY":3,"DKYVEQ":9,"JNTILM":3,"NDHUGK":9}'}
 components:
 - type: Label
   properties: {width: default, align: center, border: '', foreground: '', visible: true,
@@ -15,6 +15,30 @@ components:
   layout_properties: {grid_position: 'RPQUFQ,AGLFZE'}
   components:
   - type: Plot
-    properties: {}
+    properties: {height: 369}
     name: plot_1
     layout_properties: {grid_position: 'RAHRAW,NAHIOX'}
+- type: Label
+  properties: {width: default, align: left, border: '', foreground: '', visible: true,
+    text: 'Project:', font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: label_2
+  layout_properties: {grid_position: 'JHGBPT,JNTILM'}
+- type: Label
+  properties: {width: default, align: left, border: '', foreground: '', visible: true,
+    text: 'Dataset in project:', font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: label_3
+  layout_properties: {grid_position: 'JHGBPT,NDHUGK'}
+- type: DropDown
+  properties: {}
+  name: dropdown_projects
+  layout_properties: {grid_position: 'ZQQYHI,JWLQDY'}
+  event_bindings: {change: dropdown_projects_change}
+- type: DropDown
+  properties: {}
+  name: dropdown_project_sets
+  layout_properties: {grid_position: 'ZQQYHI,DKYVEQ'}
+  event_bindings: {change: dropdown_project_sets_change}

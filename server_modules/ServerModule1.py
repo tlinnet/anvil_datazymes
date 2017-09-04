@@ -21,6 +21,7 @@ except ImportError:
 
 @anvil.server.callable
 def list_xy_csv_get_projects():
+  # Get all projects
   user_row_obj = anvil.users.get_user()
   # Get the read for all the projects
   projects_readable = app_tables.xy_data.client_readable(owner=user_row_obj, md5_data=None)
@@ -31,6 +32,7 @@ def list_xy_csv_get_projects():
 
 @anvil.server.callable
 def list_xy_csv_get_p_datasets(project=None):
+  # Get datasets in project
   user_row_obj = anvil.users.get_user()
   # Get the read for all the projects
   projects_readable = app_tables.xy_data.client_readable(owner=user_row_obj, md5_data=None)
@@ -42,6 +44,22 @@ def list_xy_csv_get_p_datasets(project=None):
     elif r["project"] == project:
        project_sets.append(data)
   return project_sets
+
+@anvil.server.callable
+def list_xy_csv_get_xy(md5=None):
+  # Get x,y data from md5
+  user_row_obj = anvil.users.get_user()
+  # Get the read for all the projects
+  xy_readable = app_tables.xy_data.client_readable(owner=user_row_obj, md5_data=md5)
+  x_l = []
+  y_l = []
+  info = [None]*7
+  for i, r in enumerate(xy_readable.search()):
+    if i == 0:
+      info = [md5, r['user'], r['date_time'], r['machine'], r['project'], r['comment'], r['filename']]
+    x_l.append(r['x'])
+    y_l.append(r['y'])
+  return x_l, y_l, info
 
 @anvil.server.callable
 def get_machines():

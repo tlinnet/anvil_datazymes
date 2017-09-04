@@ -18,7 +18,7 @@ components:
   layout_properties: {grid_position: 'MLBELW,EEYSVY'}
 - type: Plot
   properties: {height: 241}
-  name: plot_1
+  name: plot_upload
   layout_properties: {grid_position: 'SIYGMT,ISPXEA'}
 - type: ColumnPanel
   properties: {col_widths: '{"HYDWXA":4,"YMORKC":8,"BJJIAP":4,"VMVZOG":8}'}
@@ -56,3 +56,14 @@ components:
     name: dropdown_project_sets
     layout_properties: {grid_position: 'LPLVTV,YMORKC'}
     event_bindings: {change: dropdown_project_sets_change}
+- type: TextArea
+  properties: {width: default, align: left, height: '130', placeholder: '', border: '',
+    enabled: false, foreground: '', visible: true, text: '', font_size: null, auto_expand: false,
+    font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false}
+  name: textarea_project_sets
+  layout_properties: {grid_position: 'BJOZHV,CAXHUH'}
+- type: Plot
+  properties: {height: 309}
+  name: plot_xy
+  layout_properties: {grid_position: 'HHLPVK,RLOZZT'}

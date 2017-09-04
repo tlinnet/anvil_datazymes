@@ -45,11 +45,13 @@ class Dash_upload (Dash_uploadTemplate):
     # Make out
     items = []
     for dataset in datasets:
-      items.append(dataset[0]+dataset[1])
+      md5, user, date_time, machine, project, comment, filename = dataset
+      data_time_str = date_time.strftime("%Y-%m-%d %H:%M:%S")
+      items.append(("%s ; %s ; %s"%(data_time_str, machine, comment), "%s"%md5))
     self.dropdown_project_sets.items = items
     
   def dropdown_project_sets_change (self, **event_args):
     # This method is called when an item is selected
-    print(dropdown_project_sets.selected_value)
+    print(self.dropdown_project_sets.selected_value)
 
 

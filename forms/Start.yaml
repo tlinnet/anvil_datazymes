@@ -216,28 +216,3 @@ components:
   name: link_about
   layout_properties: {slot: sidebar}
   event_bindings: {click: link_about_click}
-- type: Link
-  properties:
-    width: default
-    url: ''
-    align: left
-    border: ''
-    foreground: ''
-    repeat_component: ''
-    visible: true
-    text: Unittest
-    font_size: null
-    row_spacing: 10
-    font: ''
-    spacing_above: small
-    icon_align: left
-    spacing_below: small
-    italic: false
-    data: {}
-    background: ''
-    bold: false
-    underline: false
-    icon: ''
-  name: link_unittest
-  layout_properties: {slot: sidebar}
-  event_bindings: {click: link_unittest_click}

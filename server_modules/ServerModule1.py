@@ -36,7 +36,7 @@ def list_xy_csv_get_p_datasets(project=None):
   projects_readable = app_tables.xy_data.client_readable(owner=user_row_obj, md5_data=None)
   project_sets = []
   for r in projects_readable.search():
-    data = [r['project'], r['md5'], r['date_time']]
+    data = [r['md5'], r['user'], r['date_time'], r['machine'], r['project'], r['comment'], r['filename']]
     if project == None:
       project_sets.append(data)
     elif r["project"] == project:

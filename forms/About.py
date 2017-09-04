@@ -11,3 +11,8 @@ class About (AboutTemplate):
 
     # Any code you write here will run when the form opens.
 
+  def button_unittest_click (self, **event_args):
+    # This method is called when the button is clicked
+    import test_me
+    Notification("Unittests complete",title="Unittesting:", style="info").show()
+

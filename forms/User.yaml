@@ -91,7 +91,10 @@ components:
   name: label_db_username
   layout_properties: {grid_position: 'RAZTKK,RSJDPL'}
 - type: TextBox
-  properties: {}
+  properties: {width: default, align: left, hide_text: false, placeholder: '', border: '',
+    enabled: true, foreground: '', visible: true, text: '', font_size: null, font: '',
+    spacing_above: small, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false}
   name: textbox_db_username_val
   layout_properties: {grid_position: 'RAZTKK,RYMPVV'}
 - type: Label

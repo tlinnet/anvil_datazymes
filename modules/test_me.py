@@ -169,11 +169,6 @@ class TestMethods(unittest.TestCase):
     projects = anvil.server.call('list_xy_csv_get_projects')
     project_sets = anvil.server.call('list_xy_csv_get_p_datasets', project='test')
 
-# What is available in unittest this sandbox? 'TestCase' and 'main'
-# https://docs.python.org/2/library/unittest.html
-# unittest.main([module[, defaultTest[, argv[, testRunner[, testLoader[, exit[, verbosity[, failfast[, catchbreak[, buffer]]]]]]]]]])
-
-# 0 (quiet): you just get the total numbers of tests executed and the global result
-# 1 (default): you get the same plus a dot for every successful test or a F for every failure
-# 2 (verbose): you get the help string of every test and the result
-unittest.main(verbosity=1)
+def run_tests():
+  # https://docs.python.org/2/library/unittest.html
+  TestMethods().main()

@@ -15,7 +15,9 @@ class About (AboutTemplate):
 
   def button_unittest_click (self, **event_args):
     # This method is called when the button is clicked
-    import test_me
-    print("Completed")
-    Notification("Unittests complete",title="Unittesting:", style="info").show()
+    with Notification("Unit tests running..."):
+      import test_me
+      test_me.run_tests()
+      print("Completed")
+      Notification("Unittests complete",title="Unittesting:", style="info").show()
 
